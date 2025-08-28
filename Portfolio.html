@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Vijay Shankar Barokar | Portfolio</title>
+  <style>
+    body { margin:0; font-family: Arial, sans-serif; background:#373A71; color:rgb(255, 255, 255); }
+    header { display:flex; flex-wrap:wrap; align-items:center; justify-content:center; gap:40px; padding:80px 20px; background:#A597CC; }
+    header img { width:220px; height:220px; border-radius:50%; border:6px solid #373A71; object-fit:cover; }
+    header .intro { max-width:500px; }
+    header h1 { font-size:3rem; color:#373A71; margin:0; }
+    header .tagline { font-size:1.2rem; color:#04084e; margin:10px 0; font-weight:bold; }
+    header .desc { font-size:1rem; color:#A597CC; margin:15px 0; }
+    nav { position:sticky; top:0; background:#2e305f; display:flex; justify-content:center; gap:20px; padding:15px; z-index:10; }
+    nav a { color:white; text-decoration:none; font-weight:bold; transition:color 0.3s; }
+    nav a:hover { color:#E79968; }
+    section { padding:60px 20px; max-width:1000px; margin:auto; }
+    h2 { color:#EF7C5D; margin-bottom:20px; font-size:2rem; }
+    .skills, .projects, .certificates { display:grid; grid-template-columns: repeat(auto-fit,minmax(250px,1fr)); gap:20px; }
+    .card { background:#2e305f; padding:20px; border-radius:12px; transition:transform 0.3s, background 0.3s; }
+    .card:hover { transform:translateY(-5px); background:#44477c; }
+    footer { background:#2e305f; text-align:center; padding:20px; margin-top:40px; }
+    .btn { background:#E79968; color:white; padding:10px 20px; border-radius:8px; text-decoration:none; transition:background 0.3s; }
+    .btn:hover { background:#D84B5E; }
+    img.certificate { width:100%; border-radius:10px; border:3px solid #A597CC; }
+  </style>
+</head>
+<body>
+
+  <nav>
+    <a href="#about">About</a>
+    <a href="#skills">Skills</a>
+    <a href="#projects">Projects</a>
+    <a href="#certificates">Certificates</a>
+    <a href="#contact">Contact</a>
+  </nav>
+
+  <header>
+    <img src="profile.png" alt="Profile Img">
+    <div class="intro">
+      <h1>Hi, I'm Vijay Shankar Barokar 👋</h1>
+      <p class="tagline">Android Application Developer | Problem Solver | Tech Enthusiast</p>
+      <p class="desc">I design and build impactful Android applications and digital solutions. Passionate about coding, problem-solving, and creating apps that improve user experience.</p>
+      <a class="btn" href="resume.pdf">Download Resume</a>
+    </div>
+  </header>
+
+  <section id="about">
+    <h2>About Me</h2>
+    <p>I am a passionate developer with a Diploma in Computer Engineering. Skilled in Android Development, Web Technologies, and always excited to solve challenging problems. Currently exploring advanced frameworks and aiming to work in top companies.</p>
+  </section>
+
+  <section id="skills">
+    <h2>Skills</h2>
+    <div class="skills">
+      <div class="card">Java</div>
+      <div class="card">Android Studio</div>
+      <div class="card">HTML, CSS, JS</div>
+      <div class="card">PHP & MySQL</div>
+      <div class="card">Git & GitHub</div>
+    </div>
+  </section>
+
+  <section id="projects">
+    <h2>Projects</h2>
+    <div class="projects">
+      <div class="card">
+        <h3>Online Food Delivery Android App</h3>
+        <p>Capstone project with user login, ordering, category browsing, profile management, and order history features using PHP backend and Android frontend.</p>
+        <a class="btn" href="#">GitHub</a>
+      </div>
+    </div>
+  </section>
+
+  <section id="certificates">
+    <h2>Certificates</h2>
+    <div class="certificates">
+      <div class="card"><img src="certificate3.jpg" alt="Certificate 1" class="certificate"></div>
+      <div class="card"><img src="certificate2.jpg" alt="Certificate 2" class="certificate"></div>
+      <div class="card"><img src="certificate1.jfif" alt="Certificate 3" class="certificate"></div>
+    </div>
+  </section>
+
+  <section id="contact">
+    <h2>Contact</h2>
+    <p>Email: <a href="mailto:vijybarokar1@gmail.com.com">vijybarokar1@gmail.com.com</a></p>
+    <p>GitHub: <a href="#" target="_blank">github.com/vijaybarokar</a></p>
+    <p>LinkedIn: <a href="#" target="_blank">linkedin.com/in/vijaybarokar</a></p>
+  </section>
+
+  <footer>
+    <p>© 2025 Vijay Shankar Barokar. All rights reserved.</p>
+  </footer>
+
+</body>
+</html>

@@ -1,0 +1,234 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Vijay Shankar Barokar | Portfolio</title>
+  <style>
+    body { margin:0; font-family: Arial, sans-serif; background:#1a1c46; color:#fff; scroll-behavior:smooth; }
+
+    /* Navbar */
+    nav {
+      position: sticky;
+      top: 0;
+      background: #0f102c;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 6px 15px;
+      z-index: 10;
+    }
+    nav .logo { font-weight:bold; font-size:1.1rem; color:#fff; }
+    nav ul {
+      list-style:none;
+      display:flex;
+      gap:15px;
+      margin:0;
+      padding:0;
+      transition: max-height 0.4s ease, opacity 0.4s ease;
+    }
+    nav ul li a {
+      color:white;
+      text-decoration:none;
+      font-weight:bold;
+      padding:8px;
+      display:block;
+      transition:background 0.3s, color 0.3s;
+      font-size:0.95rem;
+    }
+    nav ul li a:hover {
+      background:#27294f;
+      border-radius:6px;
+      color:#E79968;
+    }
+
+    /* Mobile nav */
+    .menu-toggle { display:none; flex-direction:column; cursor:pointer; }
+    .menu-toggle span {
+      background:white; height:2px; width:22px; margin:3px 0; border-radius:3px;
+    }
+    .close-btn { display:none; text-align:right; padding:10px 20px; font-size:1.5rem; color:white; cursor:pointer; }
+    @media (max-width:768px) {
+      nav ul {
+        position:absolute; top:50px; left:0; flex-direction:column;
+        width:100%; background:#2e305f; max-height:0; opacity:0; overflow:hidden;
+      }
+      nav ul.active { max-height:500px; opacity:1; padding:10px 0; }
+      .menu-toggle { display:flex; }
+      .close-btn { display:block; }
+    }
+
+    /* Header */
+    header {
+      display:flex; flex-wrap:wrap; align-items:center; justify-content:center;
+      gap:40px; padding:80px 20px; background:#7361a5;
+    }
+    header img { width:220px; height:220px; border-radius:50%; border:6px solid #373A71; object-fit:cover; }
+    header .intro { max-width:500px; }
+    header h1 { font-size:2.5rem; color:#101346; margin:0; }
+    header .tagline { font-size:1.1rem; color:#04084e; margin:10px 0; font-weight:bold; }
+    header .desc { font-size:1rem; color:#090c63; margin:15px 0; }
+
+    /* Sections */
+    section { padding:60px 20px; max-width:1000px; margin:auto; }
+    h2 { color:#EF7C5D; margin-bottom:20px; font-size:1.8rem; }
+
+    .skills { display:grid; grid-template-columns: repeat(auto-fit,minmax(120px,1fr)); gap:15px; }
+    .skill-card { background:#2e305f; padding:12px; border-radius:10px; display:flex; flex-direction:column; align-items:center; font-size:0.9rem; }
+    .skill-card img { width:36px; height:36px; margin-bottom:6px; }
+
+    .projects, .certificates {
+      display:grid; grid-template-columns: repeat(auto-fit,minmax(250px,1fr)); gap:20px;
+    }
+    .card { background:#2e305f; padding:20px; border-radius:12px; transition:transform 0.3s, background 0.3s; text-align:center; cursor:pointer; }
+    .card:hover { transform:translateY(-5px); background:#44477c; }
+    img.certificate { width:100%; border-radius:10px; border:3px solid #A597CC; margin-bottom:10px; }
+
+    footer { background:#2e305f; text-align:center; padding:20px; margin-top:40px; }
+    .btn { background:#E79968; color:white; padding:8px 18px; border-radius:8px; text-decoration:none; transition:background 0.3s; font-size:0.9rem; }
+    .btn:hover { background:#D84B5E; }
+
+    /* Contact */
+    .contact-item { display:flex; align-items:center; gap:12px; margin:10px 0; font-size:0.95rem; background:#4650a0; padding:10px 15px; border-radius:8px; transition:background 0.3s; }
+    .contact-item a, .contact-item p { color:white; text-decoration:none; margin:0; }
+    .contact-item:hover { background:#5c66c5; }
+    .contact-item img { width:24px; height:24px; border-radius:6px; }
+
+    /* Lightbox */
+    .lightbox { display:none; position:fixed; top:0; left:0; width:100%; height:100%; background:rgba(0,0,0,0.9); justify-content:center; align-items:center; z-index:1000; flex-direction:column; }
+    .lightbox img { max-width:80%; max-height:80%; border:5px solid #fff; border-radius:10px; margin-bottom:15px; }
+    .lightbox .download-btn { background:#E79968; padding:8px 18px; border-radius:8px; text-decoration:none; color:white; font-size:0.9rem; }
+    .close { position:absolute; top:15px; right:25px; font-size:2rem; color:white; cursor:pointer; }
+
+    .hand-icon {
+  width: 28px;
+  height: 28px;
+  vertical-align: middle;
+  margin-left: 6px;
+}
+
+
+  </style>
+</head>
+<body>
+
+  <!-- Navbar -->
+  <nav>
+    <div class="logo">Portfolio</div>
+    <div class="menu-toggle" onclick="toggleMenu()">
+      <span></span><span></span><span></span>
+    </div>
+    <ul id="menu">
+      <div class="close-btn" onclick="toggleMenu()">&times;</div>
+      <li><a href="#about">About</a></li>
+      <li><a href="#skills">Skills</a></li>
+      <li><a href="#projects">Projects</a></li>
+      <li><a href="#certificates">Certificates</a></li>
+      <li><a href="#contact">Contact</a></li>
+    </ul>
+  </nav>
+
+  <!-- Header -->
+  <header>
+    <img src="profile.png" alt="Profile Img">
+    <div class="intro">
+      <h1>
+        Hi, I'm Vijay Shankar Barokar 
+        <img src="wave.png" alt="Hand Wave" class="hand-icon">
+      </h1>
+            <p class="tagline">Android Application Developer | Problem Solver | Tech Enthusiast</p>
+      <p class="desc">Enthusiastic Android Developer with strong skills in Java and Android Studio. Familiar with UI/UX design principles and Android components. Eager to learn new technologies and committed to building quality applications.</p>
+      <a class="btn" href="resume.pdf">Download Resume</a>
+    </div>
+  </header>
+
+  <!-- About -->
+  <section id="about">
+    <h2>About Me</h2>
+    <p>I am a passionate developer with a Diploma in Computer Engineering. Skilled in Android Development, Web Technologies, and always excited to solve challenging problems. Currently exploring advanced frameworks and aiming to work in top companies.</p>
+  </section>
+
+  <!-- Skills -->
+  <section id="skills">
+    <h2>Technical Skills</h2>
+    <div class="skills">
+      <div class="skill-card"><img src="java.png"><span>Java</span></div>
+      <div class="skill-card"><img src="android.png"><span>Android Studio</span></div>
+      <div class="skill-card"><img src="html.png"><span>HTML, CSS, JS</span></div>
+      <div class="skill-card"><img src="php.png"><span>PHP & MySQL</span></div>
+      <div class="skill-card"><img src="github.png"><span>Git & GitHub</span></div>
+    </div>
+  </section>
+
+  <!-- Projects -->
+  <section id="projects">
+    <h2>Projects</h2>
+    <div class="projects">
+      <div class="card">
+        <h3>Online Food Delivery Android App</h3>
+        <p>Capstone project with user login, ordering, category browsing, profile management, and order history features using PHP backend and Android frontend.</p>
+        <a class="btn" href="#">GitHub</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Certificates -->
+  <section id="certificates">
+    <h2>Certificates</h2>
+    <div class="certificates">
+      <div class="card" onclick="openLightbox('certificate3.jpg')">
+        <img src="certificate3.jpg" alt="Certificate 1" class="certificate">
+        <p>Android Development Internship Certificate</p>
+      </div>
+      <div class="card" onclick="openLightbox('certificate2.jpg')">
+        <img src="certificate2.jpg" alt="Certificate 2" class="certificate">
+        <p>Full Stack Android Developer Training Certificate</p>
+      </div>
+      <div class="card" onclick="openLightbox('certificate1.jfif')">
+        <img src="certificate1.jfif" alt="Certificate 3" class="certificate">
+        <p>Industrial Training Completion Certificate</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Contact -->
+  <section id="contact">
+    <h2>Contact</h2>
+    <div class="contact-item"><img src="email.png"><a href="mailto:vijaybarokar1@gmail.com">vijaybarokar1@gmail.com</a></div>
+    <div class="contact-item"><img src="phone.png"><p>9834826467</p></div>
+    <div class="contact-item"><img src="github.png"><a href="https://github.com/vijaybarokar" target="_blank">github.com/vijaybarokar</a></div>
+    <div class="contact-item"><img src="linkedin.png"><a href="https://www.linkedin.com/in/vijay-barokar-b21124323" target="_blank">linkedin.com/in/vijay-barokar-b21124323</a></div>
+    <div class="contact-item"><img src="location.png"><p>Jalna, Maharashtra</p></div>
+  </section>
+
+  <!-- Footer -->
+  <footer>
+    <p>© 2025 Vijay Shankar Barokar. All rights reserved.</p>
+  </footer>
+
+  <!-- Lightbox -->
+  <div id="lightbox" class="lightbox">
+    <span class="close" onclick="closeLightbox()">&times;</span>
+    <img id="lightbox-img" src="" alt="Certificate">
+    <a id="downloadLink" class="download-btn" href="#" download>Download</a>
+  </div>
+
+  <script>
+    function toggleMenu() {
+      document.getElementById('menu').classList.toggle('active');
+    }
+    function openLightbox(imgSrc) {
+      document.getElementById('lightbox').style.display = 'flex';
+      document.getElementById('lightbox-img').src = imgSrc;
+      document.getElementById('downloadLink').href = imgSrc;
+    }
+    function closeLightbox() {
+      document.getElementById('lightbox').style.display = 'none';
+    }
+    window.addEventListener("scroll", () => {
+      document.getElementById('menu').classList.remove('active');
+    });
+  </script>
+
+</body>
+</html>
