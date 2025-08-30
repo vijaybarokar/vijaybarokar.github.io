@@ -99,7 +99,7 @@
     .skill-card img { width:36px; height:36px; margin-bottom:6px; }
 
     /* Projects / Certificates */
-    .projects, .certificates {
+    .projects {
       display:grid; grid-template-columns: repeat(auto-fit,minmax(250px,1fr)); gap:20px;
     }
     .card { background:#2e305f; padding:20px; border-radius:12px; transition:transform 0.3s, background 0.3s; text-align:center; cursor:pointer; }
@@ -111,11 +111,114 @@
     .btn { background:#E79968; color:white; padding:8px 18px; border-radius:8px; text-decoration:none; transition:background 0.3s; font-size:0.9rem; }
     .btn:hover { background:#D84B5E; }
 
-    /* Contact */
-    .contact-item { display:flex; align-items:center; gap:12px; margin:10px 0; font-size:0.95rem; background:#4650a0; padding:10px 15px; border-radius:8px; transition:background 0.3s; }
-    .contact-item a, .contact-item p { color:white; text-decoration:none; margin:0; }
-    .contact-item:hover { background:#5c66c5; }
-    .contact-item img { width:24px; height:24px; border-radius:6px; }
+
+    /*Certificate  */
+    .certificates {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 20px;
+}
+
+.certificates .card {
+  position: relative;
+  overflow: hidden;
+  border-radius: 12px;
+  background: #2e305f;
+  padding: 12px;
+  text-align: center;
+  cursor: pointer;
+  transition: transform 0.3s ease, background 0.3s ease;
+}
+
+.certificates .card:hover {
+  transform: translateY(-5px);
+  background: #3a3f70;
+}
+
+.certificate-bg {
+  width: 100%;
+  border-radius: 10px;
+  opacity: 0.8;
+}
+
+/* Circular Badge in middle */
+.icon-badge {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background: white;
+  border-radius: 50%;
+  width: 80px;
+  height: 80px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 4px 15px rgba(0,0,0,0.6);
+}
+
+.icon-badge img {
+  width: 60%;
+  height: 60%;
+  object-fit: contain;
+}
+
+.certificates .card p {
+  margin-top: 10px;
+  font-weight: bold;
+  color: #fff;
+}
+
+
+/* Badge with circular pop-out effect */
+.icon-badge {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background: white;
+  border-radius: 50%;
+  width: 80px;
+  height: 80px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 0 15px rgba(0,0,0,0.5);
+}
+
+.icon-badge img {
+  width: 60%;
+  height: 60%;
+  object-fit: contain;
+}
+
+
+
+  /* Contact Row */
+  .contact-row {
+  display: flex;
+  flex-wrap: wrap;           /* allows wrapping on small screens */
+  justify-content: space-evenly; /* equal spacing when space is large */
+  gap: 15px;
+  margin-top: 20px;
+}
+
+.contact-row img {
+  width: 40px;
+  height: 40px;
+  border-radius: 8px;
+  transition: transform 0.3s, box-shadow 0.3s;
+  cursor: pointer;
+  flex-shrink: 1;  /* allows shrinking */
+}
+
+.contact-row img:hover {
+  transform: scale(1.15);
+  box-shadow: 0 0 12px #e79968;
+}
+
+
+
 
     /* Lightbox */
     .lightbox { display:none; position:fixed; top:0; left:0; width:100%; height:100%; background:rgba(0,0,0,0.9); justify-content:center; align-items:center; z-index:1000; flex-direction:column; }
@@ -229,38 +332,131 @@
     </div>
   </div>
 
+ <!-- Programming Languages -->
+<!-- Certificates -->
+<section id="certificates">
+  <h2>Certificates</h2>
+
+  <!-- Internship & Training -->
+  <h3>Internship & Training</h3>
+  <div class="certificates">
+    <div class="card" onclick="openLightbox('certificate2.png')">
+      <img src="certificate2.png" class="certificate-bg">
+      <div class="icon-badge"><img src="android.png" alt="Android"></div>
+      <p>Full Stack Android Developer Training</p>
+    </div>
+
+    <div class="card" onclick="openLightbox('certificate1.jfif')">
+      <img src="certificate1.jfif" class="certificate-bg">
+      <div class="icon-badge"><img src="industry.png" alt="Industry"></div>
+      <p>Industrial Training Completion</p>
+    </div>
+  </div>
+
   <!-- Programming Languages -->
   <h3>Programming Languages</h3>
   <div class="certificates">
-    <div class="card" onclick="openLightbox('Java certificate.jpg')"><img src="java.png" style="width:60px;height:60px;"><p>Java</p></div>
-    <div class="card" onclick="openLightbox('CPP certificate.jpg')"><img src="cpp.png" style="width:60px;height:60px;"><p>C++</p></div>
-    <div class="card" onclick="openLightbox('Python.jpg')"><img src="python.png" style="width:60px;height:60px;"><p>Python</p></div>
-    <div class="card" onclick="openLightbox('PHP certificate.jpg')"><img src="php.png" style="width:60px;height:60px;"><p>PHP</p></div>
-    <div class="card" onclick="openLightbox('Javascript certificate.jpg')"><img src="javascript.png" style="width:60px;height:60px;"><p>JavaScript</p></div>
-    <div class="card" onclick="openLightbox('DSU certificate.jpg')"><img src="ds.png" style="width:60px;height:60px;"><p>Data Structures</p></div>
-    <div class="card" onclick="openLightbox('Microprocessor certificate.jpg')"><img src="microprocessor.png" style="width:60px;height:60px;"><p>Microprocessor</p></div>
-    <div class="card" onclick="openLightbox('Adv Java certificate.jpg')"><img src="java.png" style="width:60px;height:60px;"><p>Advanced Java</p></div>
-    <div class="card" onclick="openLightbox('Android certificate.jpg')"><img src="android.png" style="width:60px;height:60px;"><p>Android</p></div>
+    <div class="card" onclick="openLightbox('Java certificate.jpg')">
+      <img src="Java certificate.jpg" class="certificate-bg">
+      <div class="icon-badge"><img src="java.png" alt="Java"></div>
+      <p>Java</p>
+    </div>
+
+    <div class="card" onclick="openLightbox('CPP certificate.jpg')">
+      <img src="CPP certificate.jpg" class="certificate-bg">
+      <div class="icon-badge"><img src="cpp.png" alt="C++"></div>
+      <p>C++</p>
+    </div>
+
+    <div class="card" onclick="openLightbox('Python.jpg')">
+      <img src="Python.jpg" class="certificate-bg">
+      <div class="icon-badge"><img src="python.png" alt="Python"></div>
+      <p>Python</p>
+    </div>
+
+    <div class="card" onclick="openLightbox('PHP certificate.jpg')">
+      <img src="PHP certificate.jpg" class="certificate-bg">
+      <div class="icon-badge"><img src="php.png" alt="PHP"></div>
+      <p>PHP</p>
+    </div>
+
+    <div class="card" onclick="openLightbox('Javascript certificate.jpg')">
+      <img src="Javascript certificate.jpg" class="certificate-bg">
+      <div class="icon-badge"><img src="javascript.png" alt="JavaScript"></div>
+      <p>JavaScript</p>
+    </div>
+
+    <div class="card" onclick="openLightbox('DSU certificate.jpg')">
+      <img src="DSU certificate.jpg" class="certificate-bg">
+      <div class="icon-badge"><img src="ds.png" alt="Data Structures"></div>
+      <p>Data Structures</p>
+    </div>
+
+    <div class="card" onclick="openLightbox('Microprocessor certificate.jpg')">
+      <img src="Microprocessor certificate.jpg" class="certificate-bg">
+      <div class="icon-badge"><img src="microprocessor.png" alt="Microprocessor"></div>
+      <p>Microprocessor</p>
+    </div>
+
+    <div class="card" onclick="openLightbox('Adv Java certificate.jpg')">
+      <img src="Adv Java certificate.jpg" class="certificate-bg">
+      <div class="icon-badge"><img src="java.png" alt="Advanced Java"></div>
+      <p>Advanced Java</p>
+    </div>
+
+    <div class="card" onclick="openLightbox('Android certificate.jpg')">
+      <img src="Android certificate.jpg" class="certificate-bg">
+      <div class="icon-badge"><img src="android.png" alt="Android"></div>
+      <p>Android</p>
+    </div>
   </div>
 
   <!-- Workshops -->
   <h3>Workshops</h3>
   <div class="certificates">
-    <div class="card" onclick="openLightbox('Cybersecurity.jpg')"><img src="cybersecurity.png" style="width:60px;height:60px;"><p>Cybersecurity</p></div>
-    <div class="card" onclick="openLightbox('Python workshop.jpg')"><img src="data science.png" style="width:60px;height:60px;"><p>Data Science using Python</p></p></div>
-    <div class="card" onclick="openLightbox('Hardware maintenance.jpg')"><img src="hardware.png" style="width:60px;height:60px;"><p>Hardware Maintenance</p></div>
+    <div class="card" onclick="openLightbox('Cybersecurity.jpg')">
+      <img src="Cybersecurity.jpg" class="certificate-bg">
+      <div class="icon-badge"><img src="cybersecurity.png" alt="Cybersecurity"></div>
+      <p>Cybersecurity</p>
+    </div>
+
+    <div class="card" onclick="openLightbox('Python workshop.jpg')">
+      <img src="Python workshop.jpg" class="certificate-bg">
+      <div class="icon-badge"><img src="data science.png" alt="Data Science"></div>
+      <p>Data Science using Python</p>
+    </div>
+
+    <div class="card" onclick="openLightbox('Hardware maintenance.jpg')">
+      <img src="Hardware maintenance.jpg" class="certificate-bg">
+      <div class="icon-badge"><img src="hardware.png" alt="Hardware"></div>
+      <p>Hardware Maintenance</p>
+    </div>
   </div>
 </section>
 
-  <!-- Contact -->
-  <section id="contact">
-    <h2>Contact</h2>
-    <div class="contact-item"><img src="email.png"><a href="mailto:vijaybarokar1@gmail.com">vijaybarokar1@gmail.com</a></div>
-    <div class="contact-item"><img src="phone.png"><p>9834826467</p></div>
-    <div class="contact-item"><img src="github.png"><a href="https://github.com/vijaybarokar" target="_blank">github.com/vijaybarokar</a></div>
-    <div class="contact-item"><img src="linkedin.png"><a href="https://www.linkedin.com/in/vijay-barokar-b21124323" target="_blank">linkedin.com/in/vijay-barokar-b21124323</a></div>
-    <div class="contact-item"><img src="location.png"><p>Jalna, Maharashtra</p></div>
-  </section>
+
+<!-- Contact -->
+<section id="contact">
+  <h2>Contact</h2>
+  <div class="contact-row">
+    <a href="mailto:vijaybarokar1@gmail.com">
+      <img src="email.png" alt="Email">
+    </a>
+    <a href="https://wa.me/919834826467" target="_blank">
+      <img src="whatsapp.png" alt="WhatsApp">
+    </a>
+    <a href="https://github.com/vijaybarokar" target="_blank">
+      <img src="github.png" alt="GitHub">
+    </a>
+    <a href="https://www.linkedin.com/in/vijay-barokar-b21124323" target="_blank">
+      <img src="linkedin.png" alt="LinkedIn">
+    </a>
+    <a href="https://maps.google.com/?q=Jalna,Maharashtra" target="_blank">
+      <img src="location.png" alt="Location">
+    </a>
+  </div>
+</section>
+
 
   <!-- Footer -->
   <footer>
@@ -273,6 +469,8 @@
     <img id="lightbox-img" src="" alt="Certificate">
     <a id="downloadLink" class="download-btn" href="#" download>Download</a>
   </div>
+
+  
 
   <script>
     function toggleMenu() {
@@ -293,12 +491,4 @@
 
 </body>
 </html>
-
-
-
-
-
-
-
-
 
