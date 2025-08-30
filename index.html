@@ -67,6 +67,22 @@
     header img.profile {
       width:220px; height:220px; border-radius:50%; border:5px solid #272b59; object-fit:cover;
     }
+
+    /* Glow effect on profile photo */
+header img.profile {
+  width:220px; height:220px; 
+  border-radius:50%;
+  border:5px solid #272b59;
+  object-fit:cover;
+  transition: box-shadow 0.4s, transform 0.4s;
+}
+
+header img.profile:hover {
+  box-shadow: 0 0 25px #e79968, 0 0 50px #e79968;
+  transform: scale(1.05);
+}
+
+
     /* Wave icon */
     header img.hand-icon {
       width:38px; height:38px; vertical-align:middle; margin-left:6px;
@@ -94,9 +110,25 @@
     }
 
     /* Skills */
-    .skills { display:grid; grid-template-columns: repeat(auto-fit,minmax(120px,1fr)); gap:15px; }
-    .skill-card { background:#2e305f; padding:12px; border-radius:10px; display:flex; flex-direction:column; align-items:center; font-size:0.9rem; }
-    .skill-card img { width:36px; height:36px; margin-bottom:6px; }
+    .skills { 
+  display: flex; 
+  flex-wrap: wrap; 
+  gap: 15px; 
+  justify-content: center; /* centers them neatly */
+}
+
+.skill-card {
+  background:#2e305f; 
+  padding:12px; 
+  border-radius:10px; 
+  display:flex; 
+  flex-direction:column; 
+  align-items:center; 
+  font-size:0.9rem; 
+  width:120px;  /* fixed width */
+}
+.skill-card img { width:36px; height:36px; margin-bottom:6px; }
+
 
     /* Projects / Certificates */
     .projects {
@@ -219,6 +251,31 @@
 
 
 
+/* Resume button glow */
+.btn {
+  background:#E79968;
+  color:white;
+  padding:8px 18px;
+  border-radius:8px;
+  text-decoration:none;
+  transition: all 0.3s ease;
+  font-size:0.9rem;
+  display:inline-block;
+  box-shadow: 0 0 0px transparent;
+}
+.btn:hover {
+  background:#D84B5E;
+  box-shadow: 0 0 12px #ff8c69; /* glowing effect */
+  transform: scale(1.05);
+}
+
+/* Highlight / glow for name */
+.highlight {
+  color:#dac05a;   /* premium golden-yellow */
+  text-shadow: 0 0 8px #dfc352, 0 0 12px #b52a2a; /* glowing text */
+}
+
+
 
     /* Lightbox */
     .lightbox { display:none; position:fixed; top:0; left:0; width:100%; height:100%; background:rgba(0,0,0,0.9); justify-content:center; align-items:center; z-index:1000; flex-direction:column; }
@@ -251,9 +308,10 @@
     <img src="profile.png" alt="Profile Img" class="profile">
     <div class="intro">
       <h1>
-        Hi, I'm Vijay Shankar Barokar 
+        Hi, I'm <span class="highlight">Vijay Shankar Barokar</span> 
         <img src="wave.png" alt="Hand Wave" class="hand-icon">
       </h1>
+      
       <p class="tagline">Android Application Developer | Problem Solver | Tech Enthusiast</p>
       <p class="desc">Enthusiastic Android Developer with strong skills in Java and Android Studio. Familiar with UI/UX design principles and Android components. Eager to learn new technologies and committed to building quality applications.</p>
       <a class="btn" href="resume.pdf">Download My Resume</a>
@@ -284,23 +342,54 @@
       </div>
       <div class="card">
         <h3>Secondary School Certificate (SSC)</h3>
-        <p>Mahatma Phule Madhk Vidhalay, Longaon</p>
+        <p>Mahatma Phule Madhyamik Vidhyalay, Longaon</p>
         <p>Completed: 2022</p>
       </div>
     </div>
   </section>
 
-  <!-- Skills -->
-  <section id="skills">
-    <h2>Technical Skills</h2>
-    <div class="skills">
-      <div class="skill-card"><img src="java.png"><span>Java</span></div>
-      <div class="skill-card"><img src="android.png"><span>Android Studio</span></div>
-      <div class="skill-card"><img src="html.png"><span>HTML, CSS, JS</span></div>
-      <div class="skill-card"><img src="php.png"><span>PHP & MySQL</span></div>
-      <div class="skill-card"><img src="github.png"><span>Git & GitHub</span></div>
-    </div>
-  </section>
+ 
+
+<!-- Skills -->
+<section id="skills">
+  <h2>Technical Skills</h2>
+
+  <!-- Programming Languages -->
+  <h3>Programming Languages</h3>
+  <div class="skills">
+    <div class="skill-card"><img src="c.png"><span>C</span></div>
+    <div class="skill-card"><img src="cpp.png"><span>C++</span></div>
+    <div class="skill-card"><img src="java.png"><span>Java</span></div>
+    <div class="skill-card"><img src="javascript.png"><span>JavaScript</span></div>
+    <div class="skill-card"><img src="python.png"><span>Python</span></div>
+    <div class="skill-card"><img src="php.png"><span>PHP</span></div>
+  </div>
+
+  <!-- Mobile Development -->
+  <h3>Mobile Development</h3>
+  <div class="skills">
+    <div class="skill-card"><img src="android.png"><span>Android Studio</span></div>
+    <div class="skill-card"><img src="xml.png"><span>XML</span></div>
+    <div class="skill-card"><img src="retrofit.png"><span>Retrofit</span></div>
+    <div class="skill-card"><img src="firebase.png"><span>Firebase</span></div>
+  </div>
+
+  <!-- Tools -->
+  <h3>Tools & Platforms</h3>
+  <div class="skills">
+    <div class="skill-card"><img src="git.png"><span>Git</span></div>
+    <div class="skill-card"><img src="github.png"><span>GitHub</span></div>
+    <div class="skill-card"><img src="postman.png"><span>Postman</span></div>
+    <div class="skill-card"><img src="playconsole.png"><span>Play Console</span></div>
+  </div>
+
+  <!-- Database -->
+  <h3>Database</h3>
+  <div class="skills">
+    <div class="skill-card"><img src="sql.png"><span>SQL</span></div>
+  </div>
+</section>
+
 
   <!-- Projects -->
   <section id="projects">
@@ -314,25 +403,8 @@
     </div>
   </section>
 
-                                
-<!-- Certificates -->
-<section id="certificates">
-  <h2>Certificates</h2>
-
-  <!-- Internship & Training -->
-  <h3>Internship & Training</h3>
-  <div class="certificates">
-    <div class="card" onclick="openLightbox('certificate2.png')">
-      <img src="certificate2.png" alt="Training" class="certificate">
-      <p>Full Stack Android Developer Training</p>
-    </div>
-    <div class="card" onclick="openLightbox('certificate1.jfif')">
-      <img src="certificate1.jfif" alt="Industrial Training" class="certificate">
-      <p>Industrial Training Completion</p>
-    </div>
-  </div>
-
- <!-- Programming Languages -->
+    
+  
 <!-- Certificates -->
 <section id="certificates">
   <h2>Certificates</h2>
