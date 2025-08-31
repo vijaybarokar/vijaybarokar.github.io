@@ -63,6 +63,7 @@
       display:flex; flex-wrap:wrap; align-items:center; justify-content:center;
       gap:40px; padding:80px 20px; background:#5f3ec3;
     }
+    /* Profile image */
     header img.profile {
       width:220px; height:220px; border-radius:50%; border:5px solid #272b59; object-fit:cover;
       transition: box-shadow 0.4s, transform 0.4s;
@@ -106,9 +107,14 @@
       justify-content: center;
     }
     .skill-card {
-      background:#2e305f; padding:12px; border-radius:10px;
-      display:flex; flex-direction:column; align-items:center;
-      font-size:0.9rem; width:120px;
+      background:#2e305f; 
+      padding:12px; 
+      border-radius:10px; 
+      display:flex; 
+      flex-direction:column; 
+      align-items:center; 
+      font-size:0.9rem; 
+      width:120px;
     }
     .skill-card img { width:36px; height:36px; margin-bottom:6px; }
 
@@ -119,11 +125,6 @@
     .card { background:#2e305f; padding:20px; border-radius:12px; transition:transform 0.3s, background 0.3s; text-align:center; cursor:pointer; }
     .card:hover { transform:translateY(-5px); background:#44477c; }
     img.certificate { width:100%; border-radius:10px; border:3px solid #312b43; margin-bottom:10px; }
-
-    /* Footer */
-    footer { background:#2e305f; text-align:center; padding:20px; margin-top:40px; }
-    .btn { background:#E79968; color:white; padding:8px 18px; border-radius:8px; text-decoration:none; transition:background 0.3s; font-size:0.9rem; }
-    .btn:hover { background:#D84B5E; }
 
     /* Certificates */
     .certificates {
@@ -141,26 +142,54 @@
       cursor: pointer;
       transition: transform 0.3s ease, background 0.3s ease;
     }
-    .certificates .card:hover { transform: translateY(-5px); background: #3a3f70; }
-    .certificate-bg { width: 100%; border-radius: 10px; opacity: 0.8; }
+    .certificates .card:hover {
+      transform: translateY(-5px);
+      background: #3a3f70;
+    }
+    .certificate-bg {
+      width: 100%;
+      border-radius: 10px;
+      opacity: 0.8;
+    }
     .icon-badge {
-      position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%);
-      background: white; border-radius: 50%; width: 80px; height: 80px;
-      display: flex; align-items: center; justify-content: center;
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      background: white;
+      border-radius: 50%;
+      width: 80px;
+      height: 80px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
       box-shadow: 0 0 15px rgba(0,0,0,0.5);
     }
-    .icon-badge img { width: 60%; height: 60%; object-fit: contain; }
-    .certificates .card p { margin-top: 10px; font-weight: bold; color: #fff; }
+    .icon-badge img {
+      width: 60%;
+      height: 60%;
+      object-fit: contain;
+    }
+    .certificates .card p {
+      margin-top: 10px;
+      font-weight: bold;
+      color: #fff;
+    }
 
     /* Contact Row */
     .contact-row {
-      display: flex; flex-wrap: wrap;
+      display: flex;
+      flex-wrap: wrap;
       justify-content: space-evenly;
-      gap: 15px; margin-top: 20px;
+      gap: 15px;
+      margin-top: 20px;
     }
     .contact-row img {
-      width: 40px; height: 40px; border-radius: 50%;
-      background: #2e305f; padding: 8px;
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      background: #2e305f;
+      padding: 8px;
       transition: transform 0.3s, box-shadow 0.3s;
       cursor: pointer;
     }
@@ -171,10 +200,14 @@
 
     /* Resume button glow */
     .btn {
-      background:#E79968; color:white; padding:8px 18px;
-      border-radius:8px; text-decoration:none;
+      background:#E79968;
+      color:white;
+      padding:8px 18px;
+      border-radius:8px;
+      text-decoration:none;
       transition: all 0.3s ease;
-      font-size:0.9rem; display:inline-block;
+      font-size:0.9rem;
+      display:inline-block;
       box-shadow: 0 0 0px transparent;
     }
     .btn:hover {
@@ -183,7 +216,7 @@
       transform: scale(1.05);
     }
 
-    /* Highlight / glow for name */
+    /* Highlight */
     .highlight {
       color:#dac05a;
       text-shadow: 0 0 8px #dfc352, 0 0 12px #b52a2a;
@@ -202,7 +235,7 @@
   <nav>
     <div class="logo">Portfolio</div>
     <div class="menu-toggle" onclick="toggleMenu()">
-      <span></></span><span></span><span></span>
+      <span></span><span></span><span></span>
     </div>
     <ul id="menu">
       <div class="close-btn" onclick="toggleMenu()">&times;</div>
@@ -229,14 +262,162 @@
     </div>
   </header>
 
-  <!-- Certificates Example -->
+  <!-- About -->
+  <section id="about">
+    <h2>About Me</h2>
+    <p>I am a passionate developer with a Diploma in Computer Engineering. Skilled in Android Development, Web Technologies, and always excited to solve challenging problems.</p>
+  </section>
+
+  <!-- Education -->
+  <section id="education">
+    <h2>Education</h2>
+    <div class="education">
+      <div class="card">
+        <h3>B.Tech</h3>
+        <p>Matsyodari Shikshan Sanstha's College of Engineering & Technology, Jalna</p>
+        <p>2025 – 2028</p>
+      </div>
+      <div class="card">
+        <h3>Diploma in Computer Engineering</h3>
+        <p>Government Polytechnic, Jalna</p>
+        <p>2022 – 2025</p>
+      </div>
+      <div class="card">
+        <h3>Secondary School Certificate (SSC)</h3>
+        <p>Mahatma Phule Madhyamik Vidhyalay, Longaon</p>
+        <p>Completed: 2022</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Skills -->
+  <section id="skills">
+    <h2>Technical Skills</h2>
+    <h3>Programming Languages</h3>
+    <div class="skills">
+      <div class="skill-card"><img src="c.png?v=1.0"><span>C</span></div>
+      <div class="skill-card"><img src="cpp.png?v=1.0"><span>C++</span></div>
+      <div class="skill-card"><img src="java.png?v=1.0"><span>Java</span></div>
+      <div class="skill-card"><img src="javascript.png?v=1.0"><span>JavaScript</span></div>
+      <div class="skill-card"><img src="python.png?v=1.0"><span>Python</span></div>
+      <div class="skill-card"><img src="php.png?v=1.0"><span>PHP</span></div>
+    </div>
+
+    <h3>Mobile Development</h3>
+    <div class="skills">
+      <div class="skill-card"><img src="android.png?v=1.0"><span>Android Studio</span></div>
+      <div class="skill-card"><img src="xml.png?v=1.0"><span>XML</span></div>
+      <div class="skill-card"><img src="firebase.png?v=1.0"><span>Firebase</span></div>
+    </div>
+
+    <h3>Tools & Platforms</h3>
+    <div class="skills">
+      <div class="skill-card"><img src="github.png?v=1.0"><span>GitHub</span></div>
+      <div class="skill-card"><img src="postman.png?v=1.0"><span>Postman</span></div>
+      <div class="skill-card"><img src="playconsole.png?v=1.0"><span>Play Console</span></div>
+    </div>
+
+    <h3>Database</h3>
+    <div class="skills">
+      <div class="skill-card"><img src="sql.png?v=1.0"><span>SQL</span></div>
+    </div>
+  </section>
+
+  <!-- Projects -->
+  <section id="projects">
+    <h2>Projects</h2>
+    <div class="projects">
+      <div class="card">
+        <h3>Online Food Delivery Android App</h3>
+        <p>Capstone project with user login, ordering, category browsing, profile management, and order history features using PHP backend and Android frontend.</p>
+        <a class="btn" href="https://github.com/vijaybarokar/Food-Delivery-Android-App" target="_blank">GitHub</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Certificates -->
   <section id="certificates">
     <h2>Certificates</h2>
+
+    <h3>Internship & Training</h3>
+    <div class="certificates">
+      <div class="card" onclick="openLightbox('certificate2.png?v=1.0')">
+        <img src="certificate2.png?v=1.0" class="certificate-bg">
+        <div class="icon-badge"><img src="android.png?v=1.0"></div>
+        <p>Full Stack Android Developer Training</p>
+      </div>
+      <div class="card" onclick="openLightbox('certificate1.jfif?v=1.0')">
+        <img src="certificate1.jfif?v=1.0" class="certificate-bg">
+        <div class="icon-badge"><img src="android.png?v=1.0"></div>
+        <p>Industrial Training Completion</p>
+      </div>
+    </div>
+
+    <h3>Programming Languages</h3>
     <div class="certificates">
       <div class="card" onclick="openLightbox('Java certificate.jpg?v=1.0')">
         <img src="Java certificate.jpg?v=1.0" class="certificate-bg">
-        <div class="icon-badge"><img src="java.png?v=1.0" alt="Java"></div>
+        <div class="icon-badge"><img src="java.png?v=1.0"></div>
         <p>Java</p>
+      </div>
+      <div class="card" onclick="openLightbox('CPP certificate.jpg?v=1.0')">
+        <img src="CPP certificate.jpg?v=1.0" class="certificate-bg">
+        <div class="icon-badge"><img src="cpp.png?v=1.0"></div>
+        <p>C++</p>
+      </div>
+      <div class="card" onclick="openLightbox('Python.jpg?v=1.0')">
+        <img src="Python.jpg?v=1.0" class="certificate-bg">
+        <div class="icon-badge"><img src="python.png?v=1.0"></div>
+        <p>Python</p>
+      </div>
+      <div class="card" onclick="openLightbox('PHP certificate.jpg?v=1.0')">
+        <img src="PHP certificate.jpg?v=1.0" class="certificate-bg">
+        <div class="icon-badge"><img src="php.png?v=1.0"></div>
+        <p>PHP</p>
+      </div>
+      <div class="card" onclick="openLightbox('Javascript certificate.jpg?v=1.0')">
+        <img src="Javascript certificate.jpg?v=1.0" class="certificate-bg">
+        <div class="icon-badge"><img src="javascript.png?v=1.0"></div>
+        <p>JavaScript</p>
+      </div>
+      <div class="card" onclick="openLightbox('DSU certificate.jpg?v=1.0')">
+        <img src="DSU certificate.jpg?v=1.0" class="certificate-bg">
+        <div class="icon-badge"><img src="ds.png?v=1.0"></div>
+        <p>Data Structures</p>
+      </div>
+      <div class="card" onclick="openLightbox('Microprocessor certificate.jpg?v=1.0')">
+        <img src="Microprocessor certificate.jpg?v=1.0" class="certificate-bg">
+        <div class="icon-badge"><img src="microprocessor.png?v=1.0"></div>
+        <p>Microprocessor</p>
+      </div>
+      <div class="card" onclick="openLightbox('Adv Java certificate.jpg?v=1.0')">
+        <img src="Adv Java certificate.jpg?v=1.0" class="certificate-bg">
+        <div class="icon-badge"><img src="java.png?v=1.0"></div>
+        <p>Advanced Java</p>
+      </div>
+      <div class="card" onclick="openLightbox('Android certificate.jpg?v=1.0')">
+        <img src="Android certificate.jpg?v=1.0" class="certificate-bg">
+        <div class="icon-badge"><img src="android.png?v=1.0"></div>
+        <p>Android</p>
+      </div>
+    </div>
+
+    <h3>Workshops</h3>
+    <div class="certificates">
+      <div class="card" onclick="openLightbox('Cybersecurity.jpg?v=1.0')">
+        <img src="Cybersecurity.jpg?v=1.0" class="certificate-bg">
+        <div class="icon-badge"><img src="cybersecurity.png?v=1.0"></div>
+        <p>Cybersecurity</p>
+      </div>
+      <div class="card" onclick="openLightbox('Python workshop.jpg?v=1.0')">
+        <img src="Python workshop.jpg?v=1.0" class="certificate-bg">
+        <div class="icon-badge"><img src="data science.png?v=1.0"></div>
+        <p>Data Science using Python</p>
+      </div>
+      <div class="card" onclick="openLightbox('Hardware maintenance.jpg?v=1.0')">
+        <img src="Hardware maintenance.jpg?v=1.0" class="certificate-bg">
+        <div class="icon-badge"><img src="hardware.png?v=1.0"></div>
+        <p>Hardware Maintenance</p>
       </div>
     </div>
   </section>
@@ -245,15 +426,28 @@
   <section id="contact">
     <h2>Contact</h2>
     <div class="contact-row">
-      <a href="mailto:vijaybarokar1@gmail.com"><img src="email.png?v=1.0" alt="Email"></a>
-      <a href="https://wa.me/919834826467" target="_blank"><img src="whatsapp.png?v=1.0" alt="WhatsApp"></a>
-      <a href="https://github.com/vijaybarokar" target="_blank"><img src="github.png?v=1.0" alt="GitHub"></a>
-      <a href="https://www.linkedin.com/in/vijay-barokar-b21124323" target="_blank"><img src="linkedin.png?v=1.0" alt="LinkedIn"></a>
-      <a href="https://maps.google.com/?q=Jalna,Maharashtra" target="_blank"><img src="location.png?v=1.0" alt="Location"></a>
+      <a href="mailto:vijaybarokar1@gmail.com">
+        <img src="email.png?v=1.0" alt="Email">
+      </a>
+      <a href="https://wa.me/919834826467" target="_blank">
+        <img src="whatsapp.png?v=1.0" alt="WhatsApp">
+      </a>
+      <a href="https://github.com/vijaybarokar" target="_blank">
+        <img src="github.png?v=1.0" alt="GitHub">
+      </a>
+      <a href="https://www.linkedin.com/in/vijay-barokar-b21124323" target="_blank">
+        <img src="linkedin.png?v=1.0" alt="LinkedIn">
+      </a>
+      <a href="https://maps.google.com/?q=Jalna,Maharashtra" target="_blank">
+        <img src="location.png?v=1.0" alt="Location">
+      </a>
     </div>
   </section>
 
-  <footer><p>© 2025 Vijay Shankar Barokar. All rights reserved.</p></footer>
+  <!-- Footer -->
+  <footer>
+    <p>© 2025 Vijay Shankar Barokar. All rights reserved.</p>
+  </footer>
 
   <!-- Lightbox -->
   <div id="lightbox" class="lightbox">
