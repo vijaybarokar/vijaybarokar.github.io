@@ -4,478 +4,635 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
-  <meta http-equiv="Pragma" content="no-cache">
-  <meta http-equiv="Expires" content="0">
-
   <title>Vijay Barokar | Portfolio</title>
+  
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+  
   <style>
-    body { margin:0; font-family: Arial, sans-serif; background:#1a1c46; color:#fff; scroll-behavior:smooth; }
+    :root {
+      --bg-color: #0f172a;
+      --card-bg: rgba(255, 255, 255, 0.05);
+      --card-border: rgba(255, 255, 255, 0.1);
+      --primary: #6366f1; /* Indigo */
+      --accent: #E79968;  /* Your Orange */
+      --text-main: #f8fafc;
+      --text-muted: #94a3b8;
+      --gradient: linear-gradient(135deg, #6366f1 0%, #a855f7 100%);
+    }
+
+    * { box-sizing: border-box; }
+
+    body {
+      margin: 0;
+      font-family: 'Poppins', sans-serif;
+      background-color: var(--bg-color);
+      /* Subtle modern background mesh */
+      background-image: 
+        radial-gradient(circle at 10% 20%, rgba(99, 102, 241, 0.15) 0%, transparent 20%),
+        radial-gradient(circle at 90% 80%, rgba(231, 153, 104, 0.1) 0%, transparent 20%);
+      color: var(--text-main);
+      scroll-behavior: smooth;
+      overflow-x: hidden;
+    }
+
+    /* Custom Scrollbar */
+    ::-webkit-scrollbar { width: 8px; }
+    ::-webkit-scrollbar-track { background: var(--bg-color); }
+    ::-webkit-scrollbar-thumb { background: #334155; border-radius: 4px; }
+    ::-webkit-scrollbar-thumb:hover { background: var(--accent); }
 
     /* Navbar */
     nav {
-      position: sticky;
+      position: fixed;
       top: 0;
-      background: #0f102c;
+      width: 100%;
+      background: rgba(15, 23, 42, 0.85); /* Semi-transparent */
+      backdrop-filter: blur(12px); /* Blur effect */
+      -webkit-backdrop-filter: blur(12px);
       display: flex;
       justify-content: space-between;
       align-items: center; 
-      padding: 6px 15px;
-      z-index: 10;
+      padding: 15px 5%;
+      z-index: 1000;
+      border-bottom: 1px solid var(--card-border);
+      transition: all 0.3s ease;
     }
-    nav .logo { font-weight:bold; font-size:1.1rem; color:#fff; }
+    nav .logo { 
+      font-weight: 700; 
+      font-size: 1.5rem; 
+      background: var(--gradient);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent; /* Gradient text */
+      letter-spacing: 1px;
+    }
     nav ul {
-      list-style:none;
-      display:flex;
-      gap:15px;
-      margin:0;
-      padding:0;
-      transition: max-height 0.4s ease, opacity 0.4s ease;
+      list-style: none;
+      display: flex;
+      gap: 30px;
+      margin: 0;
+      padding: 0;
     }
     nav ul li a {
-      color:white;
-      text-decoration:none;
-      font-weight:bold;
-      padding:8px;
-      display:block;
-      transition:background 0.3s, color 0.3s;
-      font-size:0.95rem;
-    }
-    nav ul li a:hover {
-      background:#27294f;
-      border-radius:6px;
-      color:#E79968;
-    }
-
-    /* Mobile nav */
-    .menu-toggle { display:none; flex-direction:column; cursor:pointer; }
-    .menu-toggle span {
-      background:white; height:2px; width:22px; margin:3px 0; border-radius:3px;
-    }
-    .close-btn { display:none; text-align:right; padding:10px 20px; font-size:1.5rem; color:white; cursor:pointer; }
-    @media (max-width:768px) {
-      nav ul {
-        position:absolute; top:50px; left:0; flex-direction:column;
-        width:100%; background:#2e305f; max-height:0; opacity:0; overflow:hidden;
-      }
-      nav ul.active { max-height:500px; opacity:1; padding:10px 0; }
-      .menu-toggle { display:flex; }
-      .close-btn { display:block; }
-    }
-
-    /* Header */
-    header {
-      display:flex; flex-wrap:wrap; align-items:center; justify-content:center;
-      gap:40px; padding:80px 20px; background:#5f3ec3;
-    }
-    /* Profile image */
-    header img.profile {
-      width:220px; height:220px; border-radius:50%; border:5px solid #272b59; object-fit:cover;
-      transition: box-shadow 0.4s, transform 0.4s;
-    }
-    header img.profile:hover {
-      box-shadow: 0 0 25px #e79968, 0 0 50px #e79968;
-      transform: scale(1.05);
-    }
-
-    /* Wave icon */
-    header img.hand-icon {
-      width:38px; height:38px; vertical-align:middle; margin-left:6px;
-      border:none; border-radius:0;
-    }
-    header .intro { max-width:500px; }
-    header h1 { font-size:2.5rem; color:#101346; margin:0; }
-    header .tagline { font-size:1.1rem; color:#04084e; margin:10px 0; font-weight:bold; }
-    header .desc { font-size:1rem; color:#090c63; margin:15px 0; }
-
-    /* Sections */
-    section { padding:60px 20px; max-width:1000px; margin:auto; }
-    h2 { color:#EF7C5D; margin-bottom:20px; font-size:1.8rem; }
-
-    /* Education */
-    .education {
-      display:grid; grid-template-columns: repeat(auto-fit,minmax(250px,1fr)); gap:20px;
-    }
-    .education .card {
-      background:#2e305f; padding:20px; border-radius:12px; text-align:center;
-      transition:transform 0.3s, background 0.3s;
-    }
-    .education .card:hover {
-      transform:translateY(-5px); background:#44477c;
-    }
-
-    /* Skills */
-    .skills { 
-      display: flex; 
-      flex-wrap: wrap; 
-      gap: 15px; 
-      justify-content: center;
-    }
-    .skill-card {
-      background:#2e305f; 
-      padding:12px; 
-      border-radius:10px; 
-      display:flex; 
-      flex-direction:column; 
-      align-items:center; 
-      font-size:0.9rem; 
-      width:120px;
-    }
-    .skill-card img { width:36px; height:36px; margin-bottom:6px; }
-
-    /* Projects / Certificates */
-    .projects {
-      display:grid; grid-template-columns: repeat(auto-fit,minmax(250px,1fr)); gap:20px;
-    }
-    .card { background:#2e305f; padding:20px; border-radius:12px; transition:transform 0.3s, background 0.3s; text-align:center; cursor:pointer; }
-    .card:hover { transform:translateY(-5px); background:#44477c; }
-    img.certificate { width:100%; border-radius:10px; border:3px solid #312b43; margin-bottom:10px; }
-
-    /* Certificates */
-    .certificates {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-      gap: 20px;
-    }
-    .certificates .card {
+      color: var(--text-main);
+      text-decoration: none;
+      font-weight: 500;
+      font-size: 0.95rem;
       position: relative;
-      overflow: hidden;
-      border-radius: 12px;
-      background: #2e305f;
-      padding: 12px;
-      text-align: center;
-      cursor: pointer;
-      transition: transform 0.3s ease, background 0.3s ease;
+      padding: 5px 0;
+      transition: color 0.3s;
     }
-    .certificates .card:hover {
-      transform: translateY(-5px);
-      background: #3a3f70;
-    }
-    .certificate-bg {
-      width: 100%;
-      border-radius: 10px;
-      opacity: 0.8;
-    }
-    .icon-badge {
+    nav ul li a::after {
+      content: '';
       position: absolute;
-      top: 50%;
+      width: 0;
+      height: 2px;
+      bottom: 0;
+      left: 0;
+      background: var(--accent);
+      transition: width 0.3s;
+    }
+    nav ul li a:hover { color: var(--accent); }
+    nav ul li a:hover::after { width: 100%; }
+
+    /* Mobile Nav */
+    .menu-toggle { display: none; cursor: pointer; flex-direction: column; gap: 6px; }
+    .menu-toggle span { background: white; height: 3px; width: 28px; border-radius: 3px; transition: 0.3s; }
+    .close-btn { display: none; }
+
+    @media (max-width: 768px) {
+      nav { padding: 15px 20px; }
+      nav ul {
+        position: fixed; top: 0; right: -100%; 
+        flex-direction: column; width: 75%; height: 100vh;
+        background: rgba(15, 23, 42, 0.98);
+        backdrop-filter: blur(20px);
+        padding-top: 80px; transition: 0.4s ease;
+        align-items: center; box-shadow: -5px 0 15px rgba(0,0,0,0.5);
+      }
+      nav ul.active { right: 0; }
+      .menu-toggle { display: flex; }
+      .close-btn { 
+        display: block; position: absolute; top: 20px; right: 25px; 
+        font-size: 2rem; cursor: pointer; color: var(--accent); 
+      }
+    }
+
+    /* General Layout */
+    section { padding: 100px 5% 60px; max-width: 1200px; margin: auto; }
+    h2 {
+      font-size: 2.2rem;
+      margin-bottom: 40px;
+      text-align: center;
+      position: relative;
+      display: inline-block;
       left: 50%;
-      transform: translate(-50%, -50%);
-      background: white;
-      border-radius: 50%;
-      width: 80px;
-      height: 80px;
+      transform: translateX(-50%);
+    }
+    h2::after {
+      content: '';
+      display: block;
+      width: 60px;
+      height: 4px;
+      background: var(--accent);
+      margin: 10px auto 0;
+      border-radius: 2px;
+    }
+
+    /* Animation Classes */
+    .hidden { opacity: 0; transform: translateY(30px); transition: all 0.8s ease-out; }
+    .show { opacity: 1; transform: translateY(0); }
+
+    /* Header / Hero */
+    header {
+      min-height: 100vh;
       display: flex;
+      flex-direction: row-reverse; /* Text left, Image right logic */
       align-items: center;
       justify-content: center;
-      box-shadow: 0 0 15px rgba(0,0,0,0.5);
-    }
-    .icon-badge img {
-      width: 60%;
-      height: 60%;
-      object-fit: contain;
-    }
-    .certificates .card p {
-      margin-top: 10px;
-      font-weight: bold;
-      color: #fff;
-    }
-
-    /* Contact Row */
-    .contact-row {
-      display: flex;
+      gap: 50px;
+      padding: 120px 5% 50px;
       flex-wrap: wrap;
-      justify-content: space-evenly;
-      gap: 15px;
-      margin-top: 20px;
     }
-    .contact-row img {
-      width: 40px;
-      height: 40px;
+    header .profile-container {
+      position: relative;
+      z-index: 1;
+    }
+    /* Glowing effect behind profile */
+    header .profile-container::before {
+      content: '';
+      position: absolute;
+      top: -10px; left: -10px; right: -10px; bottom: -10px;
+      background: var(--gradient);
       border-radius: 50%;
-      background: #2e305f;
-      padding: 8px;
-      transition: transform 0.3s, box-shadow 0.3s;
-      cursor: pointer;
+      z-index: -1;
+      filter: blur(20px);
+      opacity: 0.6;
+      animation: pulse 3s infinite;
     }
-    .contact-row img:hover {
-      transform: scale(1.15);
-      box-shadow: 0 0 15px #e79968, 0 0 25px #e79968;
+    @keyframes pulse {
+      0% { transform: scale(0.95); opacity: 0.5; }
+      50% { transform: scale(1.05); opacity: 0.7; }
+      100% { transform: scale(0.95); opacity: 0.5; }
     }
-
-    /* Resume button glow */
+    header img.profile {
+      width: 280px; height: 280px;
+      border-radius: 50%;
+      border: 4px solid rgba(255,255,255,0.2);
+      object-fit: cover;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+    }
+    header .intro { max-width: 600px; }
+    header h1 { 
+      font-size: 3rem; 
+      line-height: 1.2; 
+      margin-bottom: 10px; 
+    }
+    header h1 .highlight { color: var(--accent); }
+    header .tagline {
+      font-size: 1.3rem;
+      color: var(--primary);
+      font-weight: 600;
+      margin-bottom: 20px;
+      display: flex; align-items: center; gap: 10px;
+    }
+    header .desc {
+      color: var(--text-muted);
+      font-size: 1.1rem;
+      line-height: 1.6;
+      margin-bottom: 30px;
+    }
     .btn {
-      background:#E79968;
-      color:white;
-      padding:8px 18px;
-      border-radius:8px;
-      text-decoration:none;
-      transition: all 0.3s ease;
-      font-size:0.9rem;
-      display:inline-block;
-      box-shadow: 0 0 0px transparent;
+      background: var(--gradient);
+      color: white;
+      padding: 12px 30px;
+      border-radius: 50px;
+      text-decoration: none;
+      font-weight: 600;
+      display: inline-block;
+      transition: transform 0.3s, box-shadow 0.3s;
+      border: 1px solid rgba(255,255,255,0.2);
     }
     .btn:hover {
-      background:#D84B5E;
-      box-shadow: 0 0 12px #ff8c69;
+      transform: translateY(-3px);
+      box-shadow: 0 10px 20px rgba(99, 102, 241, 0.4);
+    }
+    /* Typing cursor effect */
+    .typing-text { border-right: 3px solid var(--accent); padding-right: 5px; animation: blink 0.7s infinite; }
+    @keyframes blink { 50% { border-color: transparent; } }
+
+    /* Cards (Education, Projects) */
+    .grid-container {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 25px;
+    }
+    .glass-card {
+      background: var(--card-bg);
+      backdrop-filter: blur(10px);
+      border: 1px solid var(--card-border);
+      padding: 25px;
+      border-radius: 16px;
+      transition: transform 0.3s, border-color 0.3s, box-shadow 0.3s;
+    }
+    .glass-card:hover {
+      transform: translateY(-7px);
+      border-color: var(--accent);
+      box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+    }
+    .glass-card h3 { color: var(--accent); margin-top: 0; font-size: 1.2rem; }
+    .glass-card p { color: var(--text-muted); font-size: 0.95rem; line-height: 1.5; }
+    .glass-card .meta { font-size: 0.85rem; color: #64748b; margin-top: 10px; font-weight: 600; }
+
+    /* Skills */
+    .skills-grid {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 20px;
+    }
+    .skill-badge {
+      background: rgba(30, 41, 59, 0.7);
+      border: 1px solid var(--card-border);
+      padding: 15px 25px;
+      border-radius: 12px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 10px;
+      width: 110px;
+      transition: 0.3s;
+      cursor: default;
+    }
+    .skill-badge:hover {
+      background: rgba(231, 153, 104, 0.1); /* orange tint */
+      border-color: var(--accent);
       transform: scale(1.05);
     }
+    .skill-badge img { width: 40px; height: 40px; object-fit: contain; }
+    .skill-badge span { font-size: 0.9rem; font-weight: 500; }
 
-    /* Highlight */
-    .highlight {
-      color:#dac05a;
-      text-shadow: 0 0 8px #dfc352, 0 0 12px #b52a2a;
+    /* Certificates */
+    .cert-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+      gap: 20px;
+    }
+    .cert-card {
+      position: relative;
+      border-radius: 12px;
+      overflow: hidden;
+      cursor: pointer;
+      aspect-ratio: 4/3;
+      border: 1px solid var(--card-border);
+      transition: 0.3s;
+      background: #1e293b;
+    }
+    .cert-card:hover { transform: scale(1.02); box-shadow: 0 0 20px rgba(231, 153, 104, 0.3); }
+    .cert-card img.bg {
+      width: 100%; height: 100%; object-fit: cover; opacity: 0.4; transition: 0.3s;
+    }
+    .cert-card:hover img.bg { opacity: 0.2; }
+    .cert-content {
+      position: absolute; top: 0; left: 0; width: 100%; height: 100%;
+      display: flex; flex-direction: column; align-items: center; justify-content: center;
+      padding: 10px; text-align: center;
+    }
+    .cert-icon {
+      background: white; width: 50px; height: 50px; border-radius: 50%;
+      display: flex; align-items: center; justify-content: center; margin-bottom: 10px;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+    }
+    .cert-icon img { width: 30px; height: 30px; }
+    .cert-title { font-weight: 600; font-size: 1rem; color: #fff; text-shadow: 0 2px 4px rgba(0,0,0,0.8); }
+
+    /* Contact */
+    .contact-icons {
+      display: flex; justify-content: center; gap: 30px; flex-wrap: wrap; margin-top: 20px;
+    }
+    .contact-icons a {
+      width: 60px; height: 60px;
+      background: var(--card-bg);
+      border: 1px solid var(--card-border);
+      border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+      transition: 0.3s;
+    }
+    .contact-icons a img { width: 30px; height: 30px; filter: invert(1) brightness(2); }
+    .contact-icons a:hover {
+      background: var(--accent);
+      transform: translateY(-5px);
+      box-shadow: 0 0 20px var(--accent);
+    }
+
+    /* Footer */
+    footer {
+      text-align: center;
+      padding: 40px;
+      margin-top: 50px;
+      border-top: 1px solid var(--card-border);
+      color: var(--text-muted);
+      font-size: 0.9rem;
     }
 
     /* Lightbox */
-    .lightbox { display:none; position:fixed; top:0; left:0; width:100%; height:100%; background:rgba(0,0,0,0.9); justify-content:center; align-items:center; z-index:1000; flex-direction:column; }
-    .lightbox img { max-width:80%; max-height:80%; border:5px solid #fff; border-radius:10px; margin-bottom:15px; }
-    .lightbox .download-btn { background:#E79968; padding:8px 18px; border-radius:8px; text-decoration:none; color:white; font-size:0.9rem; }
-    .close { position:absolute; top:15px; right:25px; font-size:2rem; color:white; cursor:pointer; }
+    .lightbox {
+      display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+      background: rgba(0,0,0,0.9); z-index: 2000;
+      justify-content: center; align-items: center; flex-direction: column;
+      backdrop-filter: blur(5px);
+    }
+    .lightbox img { max-width: 90%; max-height: 80vh; border: 2px solid white; border-radius: 8px; box-shadow: 0 0 30px rgba(0,0,0,0.5); }
+    .lightbox-controls { margin-top: 20px; display: flex; gap: 20px; }
+    .close-lb { position: absolute; top: 30px; right: 40px; color: white; font-size: 3rem; cursor: pointer; transition: 0.3s; }
+    .close-lb:hover { color: var(--accent); transform: rotate(90deg); }
+
+    @media (max-width: 768px) {
+      header { flex-direction: column-reverse; text-align: center; padding-top: 100px; }
+      header h1 { font-size: 2.2rem; }
+      header img.profile { width: 220px; height: 220px; }
+      .tagline { justify-content: center; }
+    }
   </style>
 </head>
 <body>
 
-  <!-- Navbar -->
   <nav>
     <div class="logo">Portfolio</div>
     <div class="menu-toggle" onclick="toggleMenu()">
       <span></span><span></span><span></span>
     </div>
     <ul id="menu">
-      <div class="close-btn" onclick="toggleMenu()">&times;</div>
-      <li><a href="#about">About</a></li>
-      <li><a href="#education">Education</a></li>
-      <li><a href="#skills">Skills</a></li>
-      <li><a href="#projects">Projects</a></li>
-      <li><a href="#certificates">Certificates</a></li>
-      <li><a href="#contact">Contact</a></li>
+      <div class="close-btn" onclick="toggleMenu()">×</div>
+      <li><a href="#about" onclick="toggleMenu()">About</a></li>
+      <li><a href="#education" onclick="toggleMenu()">Education</a></li>
+      <li><a href="#skills" onclick="toggleMenu()">Skills</a></li>
+      <li><a href="#projects" onclick="toggleMenu()">Projects</a></li>
+      <li><a href="#certificates" onclick="toggleMenu()">Certificates</a></li>
+      <li><a href="#contact" onclick="toggleMenu()">Contact</a></li>
     </ul>
   </nav>
 
-  <!-- Header -->
   <header>
-    <img src="profile.png?v=1.0" alt="Profile Img" class="profile">
-    <div class="intro">
-      <h1>
-        Hi, I'm <span class="highlight">Vijay Shankar Barokar</span> 
-        <img src="wave.png?v=1.0" alt="Hand Wave" class="hand-icon">
-      </h1>
-      <p class="tagline">Android Application Developer | Problem Solver | Tech Enthusiast</p>
-      <p class="desc">Enthusiastic Android Developer with strong skills in Java and Android Studio. Familiar with UI/UX design principles and Android components. Eager to learn new technologies and committed to building quality applications.</p>
-      <a class="btn" href="resume.pdf?v=1.0">Download My Resume</a>
+    <div class="intro hidden">
+      <p class="tagline">Hello, I am <span class="typing-text">Vijay Barokar</span></p>
+      <h1>Android App Developer & <br><span class="highlight">Tech Enthusiast</span></h1>
+      <p class="desc">
+        Enthusiastic Android Developer with strong skills in Java and Android Studio. 
+        Familiar with UI/UX design principles and Android components. 
+        Eager to learn new technologies and committed to building quality applications.
+      </p>
+      <div style="display:flex; gap:15px; flex-wrap:wrap; justify-content: inherit;">
+        <a class="btn" href="resume.pdf?v=1.0">Download My Resume</a>
+      </div>
+    </div>
+    
+    <div class="profile-container hidden">
+      <img src="profile.png?v=1.0" alt="Profile Img" class="profile">
     </div>
   </header>
 
-  <!-- About -->
-  <section id="about">
+  <section id="about" class="hidden">
     <h2>About Me</h2>
-    <p>I am a passionate developer with a Diploma in Computer Engineering. Skilled in Android Development, Web Technologies, and always excited to solve challenging problems.</p>
+    <div class="glass-card" style="text-align: center; max-width: 800px; margin: auto;">
+      <p style="font-size: 1.1rem; color: #e2e8f0;">
+        I am a passionate developer with a Diploma in Computer Engineering. 
+        Skilled in Android Development, Web Technologies, and always excited to solve challenging problems. 
+      </p>
+    </div>
   </section>
 
-  <!-- Education -->
   <section id="education">
     <h2>Education</h2>
-    <div class="education">
-      <div class="card">
+    <div class="grid-container">
+      <div class="glass-card hidden">
         <h3>B.Tech</h3>
         <p>Matsyodari Shikshan Sanstha's College of Engineering & Technology, Jalna</p>
-        <p>2025 – 2028</p>
+        <div class="meta">2025 – 2028</div>
       </div>
-      <div class="card">
+      <div class="glass-card hidden">
         <h3>Diploma in Computer Engineering</h3>
         <p>Government Polytechnic, Jalna</p>
-        <p>2022 – 2025</p>
+        <div class="meta">2022 – 2025</div>
       </div>
-      <div class="card">
+      <div class="glass-card hidden">
         <h3>Secondary School Certificate (SSC)</h3>
         <p>Mahatma Phule Madhyamik Vidhyalay, Longaon</p>
-        <p>Completed: 2022</p>
+        <div class="meta">Completed: 2022</div>
       </div>
     </div>
   </section>
 
-  <!-- Skills -->
   <section id="skills">
     <h2>Technical Skills</h2>
-    <h3>Programming Languages</h3>
-    <div class="skills">
-      <div class="skill-card"><img src="c.png?v=1.0"><span>C</span></div>
-      <div class="skill-card"><img src="cpp.png?v=1.0"><span>C++</span></div>
-      <div class="skill-card"><img src="java.png?v=1.0"><span>Java</span></div>
-      <div class="skill-card"><img src="javascript.png?v=1.0"><span>JavaScript</span></div>
-      <div class="skill-card"><img src="python.png?v=1.0"><span>Python</span></div>
-      <div class="skill-card"><img src="php.png?v=1.0"><span>PHP</span></div>
+    
+    <h3 style="color:var(--text-muted); margin-bottom:20px; font-size:1.1rem; text-align:center;">Programming Languages</h3>
+    <div class="skills-grid hidden">
+      <div class="skill-badge"><img src="c.png?v=1.0"><span>C</span></div>
+      <div class="skill-badge"><img src="cpp.png?v=1.0"><span>C++</span></div>
+      <div class="skill-badge"><img src="java.png?v=1.0"><span>Java</span></div>
+      <div class="skill-badge"><img src="javascript.png?v=1.0"><span>JavaScript</span></div>
+      <div class="skill-badge"><img src="python.png?v=1.0"><span>Python</span></div>
+      <div class="skill-badge"><img src="php.png?v=1.0"><span>PHP</span></div>
     </div>
 
-    <h3>Mobile Development</h3>
-    <div class="skills">
-      <div class="skill-card"><img src="android.png?v=1.0"><span>Android Studio</span></div>
-      <div class="skill-card"><img src="xml.png?v=1.0"><span>XML</span></div>
-      <div class="skill-card"><img src="firebase.png?v=1.0"><span>Firebase</span></div>
+    <h3 style="color:var(--text-muted); margin:40px 0 20px; font-size:1.1rem; text-align:center;">Mobile Development</h3>
+    <div class="skills-grid hidden">
+      <div class="skill-badge"><img src="android.png?v=1.0"><span>Android</span></div>
+      <div class="skill-badge"><img src="xml.png?v=1.0"><span>XML</span></div>
+      <div class="skill-badge"><img src="firebase.png?v=1.0"><span>Firebase</span></div>
     </div>
 
-    <h3>Tools & Platforms</h3>
-    <div class="skills">
-      <div class="skill-card"><img src="github.png?v=1.0"><span>GitHub</span></div>
-      <div class="skill-card"><img src="postman.png?v=1.0"><span>Postman</span></div>
-      <div class="skill-card"><img src="playconsole.png?v=1.0"><span>Play Console</span></div>
-    </div>
-
-    <h3>Database</h3>
-    <div class="skills">
-      <div class="skill-card"><img src="sql.png?v=1.0"><span>SQL</span></div>
+    <h3 style="color:var(--text-muted); margin:40px 0 20px; font-size:1.1rem; text-align:center;">Tools & Platforms</h3>
+    <div class="skills-grid hidden">
+      <div class="skill-badge"><img src="github.png?v=1.0"><span>GitHub</span></div>
+      <div class="skill-badge"><img src="postman.png?v=1.0"><span>Postman</span></div>
+      <div class="skill-badge"><img src="playconsole.png?v=1.0"><span>Play Console</span></div>
+      <div class="skill-badge"><img src="sql.png?v=1.0"><span>SQL</span></div>
     </div>
   </section>
 
-  <!-- Projects -->
   <section id="projects">
     <h2>Projects</h2>
-    <div class="projects">
-      <div class="card">
+    <div class="grid-container">
+      <div class="glass-card hidden">
         <h3>Online Food Delivery Android App</h3>
         <p>Capstone project with user login, ordering, category browsing, profile management, and order history features using PHP backend and Android frontend.</p>
-        <a class="btn" href="https://github.com/vijaybarokar/Food-Delivery-Android-App" target="_blank">GitHub</a>
+        <a class="btn" href="https://github.com/vijaybarokar/Food-Delivery-Android-App" target="_blank" style="margin-top:15px; font-size:0.9rem; padding:8px 20px;">GitHub</a>
       </div>
     </div>
   </section>
 
-  <!-- Certificates -->
   <section id="certificates">
     <h2>Certificates</h2>
 
-    <h3>Internship & Training</h3>
-    <div class="certificates">
-      <div class="card" onclick="openLightbox('certificate2.png?v=1.0')">
-        <img src="certificate2.png?v=1.0" class="certificate-bg">
-        <div class="icon-badge"><img src="android.png?v=1.0"></div>
-        <p>Full Stack Android Developer Training</p>
+    <h3 style="color:var(--text-muted); margin:40px 0 20px; font-size:1.1rem; text-align:center;">Internship & Training</h3>
+    <div class="cert-grid hidden">
+      <div class="cert-card" onclick="openLightbox('certificate2.png?v=1.0')">
+        <img src="certificate2.png?v=1.0" class="bg">
+        <div class="cert-content">
+          <div class="cert-icon"><img src="android.png?v=1.0"></div>
+          <div class="cert-title">Full Stack Android Training</div>
+        </div>
       </div>
-      <div class="card" onclick="openLightbox('certificate1.jfif?v=1.0')">
-        <img src="certificate1.jfif?v=1.0" class="certificate-bg">
-        <div class="icon-badge"><img src="android.png?v=1.0"></div>
-        <p>Industrial Training Completion</p>
-      </div>
-    </div>
-
-    <h3>Programming Languages</h3>
-    <div class="certificates">
-      <div class="card" onclick="openLightbox('Java certificate.jpg?v=1.0')">
-        <img src="Java certificate.jpg?v=1.0" class="certificate-bg">
-        <div class="icon-badge"><img src="java.png?v=1.0"></div>
-        <p>Java</p>
-      </div>
-      <div class="card" onclick="openLightbox('CPP certificate.jpg?v=1.0')">
-        <img src="CPP certificate.jpg?v=1.0" class="certificate-bg">
-        <div class="icon-badge"><img src="cpp.png?v=1.0"></div>
-        <p>C++</p>
-      </div>
-      <div class="card" onclick="openLightbox('Python.jpg?v=1.0')">
-        <img src="Python.jpg?v=1.0" class="certificate-bg">
-        <div class="icon-badge"><img src="python.png?v=1.0"></div>
-        <p>Python</p>
-      </div>
-      <div class="card" onclick="openLightbox('PHP certificate.jpg?v=1.0')">
-        <img src="PHP certificate.jpg?v=1.0" class="certificate-bg">
-        <div class="icon-badge"><img src="php.png?v=1.0"></div>
-        <p>PHP</p>
-      </div>
-      <div class="card" onclick="openLightbox('Javascript certificate.jpg?v=1.0')">
-        <img src="Javascript certificate.jpg?v=1.0" class="certificate-bg">
-        <div class="icon-badge"><img src="javascript.png?v=1.0"></div>
-        <p>JavaScript</p>
-      </div>
-      <div class="card" onclick="openLightbox('DSU certificate.jpg?v=1.0')">
-        <img src="DSU certificate.jpg?v=1.0" class="certificate-bg">
-        <div class="icon-badge"><img src="ds.png?v=1.0"></div>
-        <p>Data Structures</p>
-      </div>
-      <div class="card" onclick="openLightbox('Microprocessor certificate.jpg?v=1.0')">
-        <img src="Microprocessor certificate.jpg?v=1.0" class="certificate-bg">
-        <div class="icon-badge"><img src="microprocessor.png?v=1.0"></div>
-        <p>Microprocessor</p>
-      </div>
-      <div class="card" onclick="openLightbox('Adv Java certificate.jpg?v=1.0')">
-        <img src="Adv Java certificate.jpg?v=1.0" class="certificate-bg">
-        <div class="icon-badge"><img src="java.png?v=1.0"></div>
-        <p>Advanced Java</p>
-      </div>
-      <div class="card" onclick="openLightbox('Android certificate.jpg?v=1.0')">
-        <img src="Android certificate.jpg?v=1.0" class="certificate-bg">
-        <div class="icon-badge"><img src="android.png?v=1.0"></div>
-        <p>Android</p>
+      <div class="cert-card" onclick="openLightbox('certificate1.jfif?v=1.0')">
+        <img src="certificate1.jfif?v=1.0" class="bg">
+        <div class="cert-content">
+          <div class="cert-icon"><img src="android.png?v=1.0"></div>
+          <div class="cert-title">Industrial Training</div>
+        </div>
       </div>
     </div>
 
-    <h3>Workshops</h3>
-    <div class="certificates">
-      <div class="card" onclick="openLightbox('Cybersecurity.jpg?v=1.0')">
-        <img src="Cybersecurity.jpg?v=1.0" class="certificate-bg">
-        <div class="icon-badge"><img src="cybersecurity.png?v=1.0"></div>
-        <p>Cybersecurity</p>
+    <h3 style="color:var(--text-muted); margin:40px 0 20px; font-size:1.1rem; text-align:center;">Programming Languages</h3>
+    <div class="cert-grid hidden">
+      <div class="cert-card" onclick="openLightbox('Java certificate.jpg?v=1.0')">
+        <img src="Java certificate.jpg?v=1.0" class="bg">
+        <div class="cert-content">
+          <div class="cert-icon"><img src="java.png?v=1.0"></div>
+          <div class="cert-title">Java</div>
+        </div>
       </div>
-      <div class="card" onclick="openLightbox('Python workshop.jpg?v=1.0')">
-        <img src="Python workshop.jpg?v=1.0" class="certificate-bg">
-        <div class="icon-badge"><img src="data science.png?v=1.0"></div>
-        <p>Data Science using Python</p>
+      <div class="cert-card" onclick="openLightbox('CPP certificate.jpg?v=1.0')">
+        <img src="CPP certificate.jpg?v=1.0" class="bg">
+        <div class="cert-content">
+          <div class="cert-icon"><img src="cpp.png?v=1.0"></div>
+          <div class="cert-title">C++</div>
+        </div>
       </div>
-      <div class="card" onclick="openLightbox('Hardware maintenance.jpg?v=1.0')">
-        <img src="Hardware maintenance.jpg?v=1.0" class="certificate-bg">
-        <div class="icon-badge"><img src="hardware.png?v=1.0"></div>
-        <p>Hardware Maintenance</p>
+      <div class="cert-card" onclick="openLightbox('Python.jpg?v=1.0')">
+        <img src="Python.jpg?v=1.0" class="bg">
+        <div class="cert-content">
+          <div class="cert-icon"><img src="python.png?v=1.0"></div>
+          <div class="cert-title">Python</div>
+        </div>
+      </div>
+      <div class="cert-card" onclick="openLightbox('PHP certificate.jpg?v=1.0')">
+        <img src="PHP certificate.jpg?v=1.0" class="bg">
+        <div class="cert-content">
+          <div class="cert-icon"><img src="php.png?v=1.0"></div>
+          <div class="cert-title">PHP</div>
+        </div>
+      </div>
+      <div class="cert-card" onclick="openLightbox('Javascript certificate.jpg?v=1.0')">
+        <img src="Javascript certificate.jpg?v=1.0" class="bg">
+        <div class="cert-content">
+          <div class="cert-icon"><img src="javascript.png?v=1.0"></div>
+          <div class="cert-title">JavaScript</div>
+        </div>
+      </div>
+      <div class="cert-card" onclick="openLightbox('DSU certificate.jpg?v=1.0')">
+        <img src="DSU certificate.jpg?v=1.0" class="bg">
+        <div class="cert-content">
+          <div class="cert-icon"><img src="ds.png?v=1.0"></div>
+          <div class="cert-title">Data Structures</div>
+        </div>
+      </div>
+      <div class="cert-card" onclick="openLightbox('Microprocessor certificate.jpg?v=1.0')">
+        <img src="Microprocessor certificate.jpg?v=1.0" class="bg">
+        <div class="cert-content">
+          <div class="cert-icon"><img src="microprocessor.png?v=1.0"></div>
+          <div class="cert-title">Microprocessor</div>
+        </div>
+      </div>
+      <div class="cert-card" onclick="openLightbox('Adv Java certificate.jpg?v=1.0')">
+        <img src="Adv Java certificate.jpg?v=1.0" class="bg">
+        <div class="cert-content">
+          <div class="cert-icon"><img src="java.png?v=1.0"></div>
+          <div class="cert-title">Advanced Java</div>
+        </div>
+      </div>
+      <div class="cert-card" onclick="openLightbox('Android certificate.jpg?v=1.0')">
+        <img src="Android certificate.jpg?v=1.0" class="bg">
+        <div class="cert-content">
+          <div class="cert-icon"><img src="android.png?v=1.0"></div>
+          <div class="cert-title">Android</div>
+        </div>
+      </div>
+    </div>
+
+    <h3 style="color:var(--text-muted); margin:40px 0 20px; font-size:1.1rem; text-align:center;">Workshops</h3>
+    <div class="cert-grid hidden">
+       <div class="cert-card" onclick="openLightbox('Cybersecurity.jpg?v=1.0')">
+        <img src="Cybersecurity.jpg?v=1.0" class="bg">
+        <div class="cert-content">
+          <div class="cert-icon"><img src="cybersecurity.png?v=1.0"></div>
+          <div class="cert-title">Cybersecurity</div>
+        </div>
+      </div>
+      <div class="cert-card" onclick="openLightbox('Python workshop.jpg?v=1.0')">
+        <img src="Python workshop.jpg?v=1.0" class="bg">
+        <div class="cert-content">
+          <div class="cert-icon"><img src="data science.png?v=1.0"></div>
+          <div class="cert-title">Data Science (Python)</div>
+        </div>
+      </div>
+      <div class="cert-card" onclick="openLightbox('Hardware maintenance.jpg?v=1.0')">
+        <img src="Hardware maintenance.jpg?v=1.0" class="bg">
+        <div class="cert-content">
+          <div class="cert-icon"><img src="hardware.png?v=1.0"></div>
+          <div class="cert-title">Hardware Maintenance</div>
+        </div>
       </div>
     </div>
   </section>
 
-  <!-- Contact -->
   <section id="contact">
-    <h2>Contact</h2>
-    <div class="contact-row">
-      <a href="mailto:vijaybarokar1@gmail.com">
-        <img src="email.png?v=1.0" alt="Email">
-      </a>
-      <a href="https://wa.me/919834826467" target="_blank">
-        <img src="whatsapp.png?v=1.0" alt="WhatsApp">
-      </a>
-      <a href="https://github.com/vijaybarokar" target="_blank">
-        <img src="github.png?v=1.0" alt="GitHub">
-      </a>
-      <a href="https://www.linkedin.com/in/vijay-barokar-b21124323" target="_blank">
-        <img src="linkedin.png?v=1.0" alt="LinkedIn">
-      </a>
-      <a href="https://maps.google.com/?q=Jalna,Maharashtra" target="_blank">
-        <img src="location.png?v=1.0" alt="Location">
-      </a>
+    <h2>Get In Touch</h2>
+    <div class="glass-card hidden" style="text-align: center; max-width: 600px; margin: auto;">
+      <p>I am currently available for internships and freelance projects. Feel free to reach out!</p>
+      <div class="contact-icons">
+        <a href="mailto:vijaybarokar1@gmail.com" title="Email"><img src="email.png?v=1.0"></a>
+        <a href="https://wa.me/919834826467" target="_blank" title="WhatsApp"><img src="whatsapp.png?v=1.0"></a>
+        <a href="https://github.com/vijaybarokar" target="_blank" title="GitHub"><img src="github.png?v=1.0"></a>
+        <a href="https://www.linkedin.com/in/vijay-barokar-b21124323" target="_blank" title="LinkedIn"><img src="linkedin.png?v=1.0"></a>
+        <a href="https://maps.google.com/?q=Jalna,Maharashtra" target="_blank" title="Location"><img src="location.png?v=1.0"></a>
+      </div>
     </div>
   </section>
 
-  <!-- Footer -->
   <footer>
     <p>© 2025 Vijay Shankar Barokar. All rights reserved.</p>
   </footer>
 
-  <!-- Lightbox -->
-  <div id="lightbox" class="lightbox">
-    <span class="close" onclick="closeLightbox()">&times;</span>
+  <div id="lightbox" class="lightbox" onclick="closeLightbox(event)">
+    <span class="close-lb" onclick="closeLightbox(event)">×</span>
     <img id="lightbox-img" src="" alt="Certificate">
-    <a id="downloadLink" class="download-btn" href="#" download>Download</a>
+    <div class="lightbox-controls">
+      <a id="downloadLink" class="btn" href="#" download>Download Image</a>
+    </div>
   </div>
 
   <script>
+    // Mobile Menu
     function toggleMenu() {
       document.getElementById('menu').classList.toggle('active');
     }
+
+    // Scroll Animation (Intersection Observer)
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('show');
+        }
+      });
+    });
+    
+    // Select all hidden elements to animate
+    const hiddenElements = document.querySelectorAll('.hidden');
+    hiddenElements.forEach((el) => observer.observe(el));
+
+    // Lightbox Logic
     function openLightbox(imgSrc) {
       document.getElementById('lightbox').style.display = 'flex';
       document.getElementById('lightbox-img').src = imgSrc;
       document.getElementById('downloadLink').href = imgSrc;
     }
-    function closeLightbox() {
-      document.getElementById('lightbox').style.display = 'none';
+
+    function closeLightbox(event) {
+      if(event.target.id === 'lightbox' || event.target.classList.contains('close-lb')) {
+        document.getElementById('lightbox').style.display = 'none';
+      }
     }
-    window.addEventListener("scroll", () => {
-      document.getElementById('menu').classList.remove('active');
-    });
   </script>
 </body>
 </html>
-
