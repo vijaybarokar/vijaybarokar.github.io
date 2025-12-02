@@ -5,6 +5,9 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
   <title>Vijay Barokar | Portfolio</title>
+  <link rel="icon" href="logo.svg" type="image/svg+xml">
+  <meta name="description" content="Portfolio of Vijay Barokar - Android Developer and Tech Enthusiast. View my projects and skills.">
+<meta name="keywords" content="Vijay Barokar, Android Developer, Java, Portfolio">
   
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
   
@@ -32,7 +35,7 @@
         radial-gradient(circle at 90% 80%, rgba(231, 153, 104, 0.1) 0%, transparent 20%);
       color: var(--text-main);
       scroll-behavior: smooth;
-      overflow-x: hidden;
+      overflow-x: hidden; /* Prevent horizontal scroll */
     }
 
     /* Custom Scrollbar */
@@ -317,7 +320,7 @@
       display: flex; align-items: center; justify-content: center;
       transition: 0.3s;
     }
-    .contact-icons a img { width: 30px; height: 30px; filter: invert(1) brightness(2); }
+    .contact-icons a img { width: 30px; height: 30px; }
     .contact-icons a:hover {
       background: var(--accent);
       transform: translateY(-5px);
@@ -387,7 +390,7 @@
     </div>
     
     <div class="profile-container hidden">
-      <img src="profile.png?v=1.0" alt="Profile Img" class="profile">
+      <img src="ProfilePhoto.png" alt="Profile Img" class="profile">
     </div>
   </header>
 
@@ -412,12 +415,12 @@
       <div class="glass-card hidden">
         <h3>Diploma in Computer Engineering</h3>
         <p>Government Polytechnic, Jalna</p>
-        <div class="meta">2022 – 2025</div>
+        <div class="meta">Completed: 2022 – 2025</div>
       </div>
       <div class="glass-card hidden">
         <h3>Secondary School Certificate (SSC)</h3>
         <p>Mahatma Phule Madhyamik Vidhyalay, Longaon</p>
-        <div class="meta">Completed: 2022</div>
+        <div class="meta">Completed: 2021 - 2022</div>
       </div>
     </div>
   </section>
@@ -457,7 +460,7 @@
       <div class="glass-card hidden">
         <h3>Online Food Delivery Android App</h3>
         <p>Capstone project with user login, ordering, category browsing, profile management, and order history features using PHP backend and Android frontend.</p>
-        <a class="btn" href="https://github.com/vijaybarokar/Food-Delivery-Android-App" target="_blank" style="margin-top:15px; font-size:0.9rem; padding:8px 20px;">GitHub</a>
+        <a class="btn" href="https://github.com/vijaybarokar/QuickBite" target="_blank" style="margin-top:15px; font-size:0.9rem; padding:8px 20px;">GitHub</a>
       </div>
     </div>
   </section>
@@ -626,13 +629,25 @@
       document.getElementById('lightbox').style.display = 'flex';
       document.getElementById('lightbox-img').src = imgSrc;
       document.getElementById('downloadLink').href = imgSrc;
+      // LOCK SCROLL: Prevents background from moving
+      document.body.style.overflow = 'hidden';
     }
 
     function closeLightbox(event) {
-      if(event.target.id === 'lightbox' || event.target.classList.contains('close-lb')) {
+      // Logic to check if user clicked outside the image or on the close button
+      if (!event || event.target.id === 'lightbox' || event.target.classList.contains('close-lb')) {
         document.getElementById('lightbox').style.display = 'none';
+        // UNLOCK SCROLL: Allows background to move again
+        document.body.style.overflow = '';
       }
     }
+
+    // Escape Key Listener
+    document.addEventListener('keydown', function(event) {
+      if (event.key === "Escape") {
+        closeLightbox(); // Call without event to force close
+      }
+    });
   </script>
 </body>
 </html>
