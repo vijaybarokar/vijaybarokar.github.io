@@ -4,311 +4,397 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
-  <title>Vijay Barokar | Portfolio</title>
-  <link rel="icon" href="logo.svg" type="image/svg+xml">
+  <title>Vijay Barokar | Modern Portfolio</title>
+  <link rel="icon" href="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/android/android-plain.svg" type="image/svg+xml">
   <meta name="description" content="Portfolio of Vijay Barokar - Android Developer and Tech Enthusiast. View my projects and skills.">
-<meta name="keywords" content="Vijay Barokar, Android Developer, Java, Portfolio">
+  <meta name="keywords" content="Vijay Barokar, Android Developer, Java, Portfolio">
   
-  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
   
   <style>
     :root {
-      --bg-color: #0f172a;
-      --card-bg: rgba(255, 255, 255, 0.05);
-      --card-border: rgba(255, 255, 255, 0.1);
-      --primary: #6366f1; /* Indigo */
-      --accent: #E79968;  /* Your Orange */
+      --bg-color: #030712; /* Deepest Navy/Black */
+      --card-bg: rgba(255, 255, 255, 0.03);
+      --card-border: rgba(255, 255, 255, 0.08);
+      --primary: #818cf8; /* Soft Indigo */
+      --accent: #f472b6;  /* Pink/Rose Accent */
+      --accent-glow: rgba(244, 114, 182, 0.4);
       --text-main: #f8fafc;
       --text-muted: #94a3b8;
-      --gradient: linear-gradient(135deg, #6366f1 0%, #a855f7 100%);
+      --gradient: linear-gradient(135deg, #818cf8 0%, #c084fc 100%);
+      --glass: rgba(17, 25, 40, 0.75);
     }
 
     * { box-sizing: border-box; }
 
+    html {
+      scroll-padding-top: 100px; /* Prevents navbar from covering section titles on click */
+    }
+
     body {
       margin: 0;
-      font-family: 'Poppins', sans-serif;
+      font-family: 'Outfit', sans-serif;
       background-color: var(--bg-color);
-      /* Subtle modern background mesh */
-      background-image: 
-        radial-gradient(circle at 10% 20%, rgba(99, 102, 241, 0.15) 0%, transparent 20%),
-        radial-gradient(circle at 90% 80%, rgba(231, 153, 104, 0.1) 0%, transparent 20%);
       color: var(--text-main);
       scroll-behavior: smooth;
-      overflow-x: hidden; /* Prevent horizontal scroll */
+      overflow-x: hidden;
+      position: relative;
+      width: 100%;
+    }
+
+    img {
+      max-width: 100%;
+      height: auto;
+      display: block;
+    }
+
+    /* Ambient Background Blobs */
+    .blob {
+      position: fixed;
+      filter: blur(80px);
+      z-index: -1;
+      opacity: 0.6;
+      animation: float 10s infinite alternate;
+      pointer-events: none; /* Prevents blobs from blocking clicks */
+    }
+    .blob-1 { top: -10%; left: -10%; width: 500px; height: 500px; background: rgba(99, 102, 241, 0.25); border-radius: 40% 60% 70% 30% / 40% 50% 60% 50%; }
+    .blob-2 { bottom: -10%; right: -10%; width: 600px; height: 600px; background: rgba(168, 85, 247, 0.15); border-radius: 60% 40% 30% 70% / 60% 30% 70% 40%; animation-delay: -5s; }
+    
+    @keyframes float {
+      0% { transform: translate(0, 0) rotate(0deg); }
+      100% { transform: translate(30px, 50px) rotate(10deg); }
     }
 
     /* Custom Scrollbar */
-    ::-webkit-scrollbar { width: 8px; }
+    ::-webkit-scrollbar { width: 10px; }
     ::-webkit-scrollbar-track { background: var(--bg-color); }
-    ::-webkit-scrollbar-thumb { background: #334155; border-radius: 4px; }
-    ::-webkit-scrollbar-thumb:hover { background: var(--accent); }
+    ::-webkit-scrollbar-thumb { background: #334155; border-radius: 5px; border: 2px solid var(--bg-color); }
+    ::-webkit-scrollbar-thumb:hover { background: var(--primary); }
 
-    /* Navbar */
+    /* Navbar - Floating Pill Style */
     nav {
       position: fixed;
-      top: 0;
-      width: 100%;
-      background: rgba(15, 23, 42, 0.85); /* Semi-transparent */
-      backdrop-filter: blur(12px); /* Blur effect */
-      -webkit-backdrop-filter: blur(12px);
+      top: 20px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 90%;
+      max-width: 1200px;
+      background: rgba(15, 23, 42, 0.75); /* Increased opacity for better readability */
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
       display: flex;
       justify-content: space-between;
       align-items: center; 
-      padding: 15px 5%;
+      padding: 12px 30px;
       z-index: 1000;
-      border-bottom: 1px solid var(--card-border);
+      border: 1px solid var(--card-border);
+      border-radius: 50px;
+      box-shadow: 0 4px 30px rgba(0, 0, 0, 0.2);
       transition: all 0.3s ease;
     }
+    nav.scrolled {
+      top: 10px;
+      background: rgba(15, 23, 42, 0.95);
+      padding: 10px 25px;
+    }
     nav .logo { 
-      font-weight: 700; 
-      font-size: 1.5rem; 
+      font-weight: 800; 
+      font-size: 1.4rem; 
       background: var(--gradient);
       -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent; /* Gradient text */
-      letter-spacing: 1px;
+      -webkit-text-fill-color: transparent;
+      letter-spacing: -0.5px;
     }
     nav ul {
       list-style: none;
       display: flex;
-      gap: 30px;
+      gap: 5px;
       margin: 0;
       padding: 0;
     }
     nav ul li a {
-      color: var(--text-main);
+      color: var(--text-muted);
       text-decoration: none;
       font-weight: 500;
-      font-size: 0.95rem;
-      position: relative;
-      padding: 5px 0;
-      transition: color 0.3s;
+      font-size: 0.9rem;
+      padding: 8px 16px;
+      border-radius: 20px;
+      transition: all 0.3s;
     }
-    nav ul li a::after {
-      content: '';
-      position: absolute;
-      width: 0;
-      height: 2px;
-      bottom: 0;
-      left: 0;
-      background: var(--accent);
-      transition: width 0.3s;
+    /* Active Link State */
+    nav ul li a:hover, nav ul li a.active { 
+      color: white; 
+      background: rgba(255,255,255,0.1);
+      box-shadow: 0 0 15px rgba(255,255,255,0.05);
     }
-    nav ul li a:hover { color: var(--accent); }
-    nav ul li a:hover::after { width: 100%; }
 
     /* Mobile Nav */
-    .menu-toggle { display: none; cursor: pointer; flex-direction: column; gap: 6px; }
-    .menu-toggle span { background: white; height: 3px; width: 28px; border-radius: 3px; transition: 0.3s; }
+    .menu-toggle { display: none; cursor: pointer; flex-direction: column; gap: 5px; }
+    .menu-toggle span { background: var(--text-main); height: 2px; width: 24px; border-radius: 2px; transition: 0.3s; }
     .close-btn { display: none; }
 
     @media (max-width: 768px) {
-      nav { padding: 15px 20px; }
+      nav { top: 0; left: 0; transform: none; width: 100%; border-radius: 0; border: none; border-bottom: 1px solid var(--card-border); padding: 15px 20px; background: rgba(3, 7, 18, 0.95); }
       nav ul {
         position: fixed; top: 0; right: -100%; 
-        flex-direction: column; width: 75%; height: 100vh;
-        background: rgba(15, 23, 42, 0.98);
+        flex-direction: column; width: 80%; height: 100vh;
+        background: rgba(3, 7, 18, 0.98);
         backdrop-filter: blur(20px);
-        padding-top: 80px; transition: 0.4s ease;
-        align-items: center; box-shadow: -5px 0 15px rgba(0,0,0,0.5);
+        padding-top: 80px; transition: 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+        align-items: center; box-shadow: -5px 0 30px rgba(0,0,0,0.5);
+        gap: 20px;
+        z-index: 999;
       }
       nav ul.active { right: 0; }
       .menu-toggle { display: flex; }
       .close-btn { 
         display: block; position: absolute; top: 20px; right: 25px; 
-        font-size: 2rem; cursor: pointer; color: var(--accent); 
+        font-size: 2rem; cursor: pointer; color: var(--text-muted); 
       }
     }
 
     /* General Layout */
-    section { padding: 100px 5% 60px; max-width: 1200px; margin: auto; }
+    section { padding: 100px 5% 40px; max-width: 1200px; margin: auto; position: relative; z-index: 1; }
     h2 {
-      font-size: 2.2rem;
-      margin-bottom: 40px;
+      font-size: 2.5rem;
+      margin-bottom: 50px;
       text-align: center;
-      position: relative;
-      display: inline-block;
-      left: 50%;
-      transform: translateX(-50%);
-    }
-    h2::after {
-      content: '';
-      display: block;
-      width: 60px;
-      height: 4px;
-      background: var(--accent);
-      margin: 10px auto 0;
-      border-radius: 2px;
+      font-weight: 700;
+      letter-spacing: -1px;
+      background: linear-gradient(to right, #fff, #94a3b8);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
     }
 
     /* Animation Classes */
-    .hidden { opacity: 0; transform: translateY(30px); transition: all 0.8s ease-out; }
+    .hidden { opacity: 0; transform: translateY(40px); transition: all 0.8s cubic-bezier(0.16, 1, 0.3, 1); }
     .show { opacity: 1; transform: translateY(0); }
 
     /* Header / Hero */
     header {
       min-height: 100vh;
       display: flex;
-      flex-direction: row-reverse; /* Text left, Image right logic */
       align-items: center;
       justify-content: center;
-      gap: 50px;
-      padding: 120px 5% 50px;
+      gap: 60px;
+      padding: 140px 5% 60px; /* Top padding protects content from navbar */
       flex-wrap: wrap;
+      position: relative;
+      z-index: 1;
     }
     header .profile-container {
       position: relative;
       z-index: 1;
+      flex-shrink: 0; /* Prevents image squishing */
     }
-    /* Glowing effect behind profile */
     header .profile-container::before {
       content: '';
       position: absolute;
-      top: -10px; left: -10px; right: -10px; bottom: -10px;
+      inset: -3px;
       background: var(--gradient);
       border-radius: 50%;
       z-index: -1;
-      filter: blur(20px);
-      opacity: 0.6;
-      animation: pulse 3s infinite;
+      animation: spin 10s linear infinite;
+      filter: blur(10px);
+      opacity: 0.7;
     }
-    @keyframes pulse {
-      0% { transform: scale(0.95); opacity: 0.5; }
-      50% { transform: scale(1.05); opacity: 0.7; }
-      100% { transform: scale(0.95); opacity: 0.5; }
+    header .profile-container::after {
+      content: '';
+      position: absolute;
+      top: 50%; left: 50%; transform: translate(-50%, -50%);
+      width: 110%; height: 110%;
+      background: var(--gradient);
+      filter: blur(60px);
+      opacity: 0.3;
+      z-index: -2;
     }
+    @keyframes spin { 100% { transform: rotate(360deg); } }
+    
     header img.profile {
-      width: 280px; height: 280px;
+      width: 300px; height: 300px;
       border-radius: 50%;
-      border: 4px solid rgba(255,255,255,0.2);
+      border: 4px solid #0f172a;
       object-fit: cover;
-      box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+      display: block;
     }
     header .intro { max-width: 600px; }
-    header h1 { 
-      font-size: 3rem; 
-      line-height: 1.2; 
-      margin-bottom: 10px; 
-    }
-    header h1 .highlight { color: var(--accent); }
-    header .tagline {
-      font-size: 1.3rem;
+    header .badge {
+      display: inline-block;
+      padding: 6px 12px;
+      background: rgba(99, 102, 241, 0.1);
+      border: 1px solid rgba(99, 102, 241, 0.3);
+      border-radius: 20px;
+      font-size: 0.85rem;
       color: var(--primary);
-      font-weight: 600;
       margin-bottom: 20px;
-      display: flex; align-items: center; gap: 10px;
+      font-weight: 500;
+    }
+    header h1 { 
+      font-size: 3.5rem; 
+      line-height: 1.1; 
+      margin-bottom: 20px;
+      font-weight: 800;
+      letter-spacing: -1.5px;
+    }
+    header h1 .highlight { 
+      background: var(--gradient);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
     }
     header .desc {
       color: var(--text-muted);
-      font-size: 1.1rem;
-      line-height: 1.6;
-      margin-bottom: 30px;
+      font-size: 1.15rem;
+      line-height: 1.7;
+      margin-bottom: 35px;
+      font-weight: 300;
     }
+    .btn-group { display: flex; gap: 15px; flex-wrap: wrap; }
     .btn {
-      background: var(--gradient);
-      color: white;
-      padding: 12px 30px;
-      border-radius: 50px;
+      background: white;
+      color: black;
+      padding: 14px 32px;
+      border-radius: 12px;
       text-decoration: none;
       font-weight: 600;
-      display: inline-block;
-      transition: transform 0.3s, box-shadow 0.3s;
-      border: 1px solid rgba(255,255,255,0.2);
+      transition: all 0.3s;
+      border: 1px solid transparent;
     }
     .btn:hover {
-      transform: translateY(-3px);
-      box-shadow: 0 10px 20px rgba(99, 102, 241, 0.4);
+      transform: translateY(-2px);
+      box-shadow: 0 0 20px rgba(255,255,255,0.3);
     }
-    /* Typing cursor effect */
-    .typing-text { border-right: 3px solid var(--accent); padding-right: 5px; animation: blink 0.7s infinite; }
+    .btn-outline {
+      background: transparent;
+      color: white;
+      border: 1px solid rgba(255,255,255,0.2);
+    }
+    .btn-outline:hover {
+      background: rgba(255,255,255,0.05);
+      border-color: white;
+    }
+    
+    /* Typing Cursor Effect */
+    .typing-text {
+      color: var(--accent);
+      border-right: 3px solid var(--accent);
+      padding-right: 5px;
+      animation: blink 0.7s infinite;
+    }
     @keyframes blink { 50% { border-color: transparent; } }
 
-    /* Cards (Education, Projects) */
+    /* Cards Modern */
     .grid-container {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-      gap: 25px;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 30px;
+      align-items: start; /* Prevents cards from stretching vertically */
     }
     .glass-card {
-      background: var(--card-bg);
-      backdrop-filter: blur(10px);
+      background: linear-gradient(180deg, rgba(30, 41, 59, 0.4) 0%, rgba(30, 41, 59, 0.2) 100%);
+      backdrop-filter: blur(12px);
       border: 1px solid var(--card-border);
-      padding: 25px;
-      border-radius: 16px;
-      transition: transform 0.3s, border-color 0.3s, box-shadow 0.3s;
+      padding: 30px;
+      border-radius: 20px;
+      transition: all 0.4s ease;
+      position: relative;
+      overflow: hidden;
+      height: 100%; /* Ensures uniform height in grid if desired */
     }
+    .glass-card::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0; width: 100%; height: 100%;
+      background: radial-gradient(400px circle at var(--mouse-x, 0) var(--mouse-y, 0), rgba(255,255,255,0.06), transparent 40%);
+      z-index: 0;
+      opacity: 0;
+      transition: opacity 0.4s;
+    }
+    .glass-card:hover::before { opacity: 1; }
     .glass-card:hover {
-      transform: translateY(-7px);
-      border-color: var(--accent);
-      box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+      border-color: rgba(255,255,255,0.2);
+      transform: translateY(-5px);
+      box-shadow: 0 20px 40px rgba(0,0,0,0.3);
     }
-    .glass-card h3 { color: var(--accent); margin-top: 0; font-size: 1.2rem; }
-    .glass-card p { color: var(--text-muted); font-size: 0.95rem; line-height: 1.5; }
-    .glass-card .meta { font-size: 0.85rem; color: #64748b; margin-top: 10px; font-weight: 600; }
+    .glass-card * { position: relative; z-index: 1; }
+    
+    .glass-card h3 { 
+      color: var(--text-main); 
+      margin-top: 0; 
+      font-size: 1.3rem; 
+      margin-bottom: 10px;
+    }
+    .glass-card .subtitle { color: var(--accent); font-size: 0.9rem; font-weight: 600; margin-bottom: 15px; display: block;}
+    .glass-card p { color: var(--text-muted); font-size: 0.95rem; line-height: 1.6; margin: 0; }
+    .glass-card .year { 
+      position: absolute; top: 30px; right: 30px; 
+      font-size: 0.8rem; color: var(--text-muted); 
+      background: rgba(255,255,255,0.05); padding: 4px 10px; border-radius: 20px;
+    }
 
-    /* Skills */
+    /* Skills - Modern Pills */
+    .skills-section h3 {
+      font-size: 1rem; text-transform: uppercase; letter-spacing: 2px; color: var(--text-muted); margin-bottom: 20px; text-align: center;
+    }
     .skills-grid {
       display: flex;
       flex-wrap: wrap;
       justify-content: center;
-      gap: 20px;
+      gap: 12px;
+      margin-bottom: 50px;
     }
-    .skill-badge {
-      background: rgba(30, 41, 59, 0.7);
+    .skill-pill {
+      background: rgba(30, 41, 59, 0.4);
       border: 1px solid var(--card-border);
-      padding: 15px 25px;
-      border-radius: 12px;
+      padding: 10px 20px;
+      border-radius: 50px;
       display: flex;
-      flex-direction: column;
       align-items: center;
       gap: 10px;
-      width: 110px;
       transition: 0.3s;
       cursor: default;
     }
-    .skill-badge:hover {
-      background: rgba(231, 153, 104, 0.1); /* orange tint */
-      border-color: var(--accent);
-      transform: scale(1.05);
+    .skill-pill:hover {
+      background: rgba(255, 255, 255, 0.08);
+      border-color: var(--primary);
+      transform: translateY(-3px);
+      box-shadow: 0 5px 15px rgba(99, 102, 241, 0.15);
     }
-    .skill-badge img { width: 40px; height: 40px; object-fit: contain; }
-    .skill-badge span { font-size: 0.9rem; font-weight: 500; }
+    .skill-pill img { width: 24px; height: 24px; object-fit: contain; }
+    .skill-pill span { font-size: 0.9rem; font-weight: 500; color: var(--text-main); }
 
-    /* Certificates */
+    /* Certificates - Image focus */
     .cert-grid {
       display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
-      gap: 20px;
+      grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+      gap: 25px;
     }
     .cert-card {
       position: relative;
-      border-radius: 12px;
+      border-radius: 20px;
       overflow: hidden;
       cursor: pointer;
-      aspect-ratio: 4/3;
+      aspect-ratio: 16/10;
       border: 1px solid var(--card-border);
-      transition: 0.3s;
-      background: #1e293b;
+      group: transition;
     }
-    .cert-card:hover { transform: scale(1.02); box-shadow: 0 0 20px rgba(231, 153, 104, 0.3); }
-    .cert-card img.bg {
-      width: 100%; height: 100%; object-fit: cover; opacity: 0.4; transition: 0.3s;
+    .cert-card img {
+      width: 100%; height: 100%; object-fit: cover;
+      transition: transform 0.5s;
     }
-    .cert-card:hover img.bg { opacity: 0.2; }
-    .cert-content {
-      position: absolute; top: 0; left: 0; width: 100%; height: 100%;
-      display: flex; flex-direction: column; align-items: center; justify-content: center;
-      padding: 10px; text-align: center;
+    .cert-overlay {
+      position: absolute; inset: 0;
+      background: linear-gradient(to top, rgba(0,0,0,0.9), transparent);
+      display: flex; flex-direction: column; justify-content: flex-end;
+      padding: 20px;
+      opacity: 0; transition: 0.3s;
     }
-    .cert-icon {
-      background: white; width: 50px; height: 50px; border-radius: 50%;
-      display: flex; align-items: center; justify-content: center; margin-bottom: 10px;
-      box-shadow: 0 4px 10px rgba(0,0,0,0.3);
-    }
-    .cert-icon img { width: 30px; height: 30px; }
-    .cert-title { font-weight: 600; font-size: 1rem; color: #fff; text-shadow: 0 2px 4px rgba(0,0,0,0.8); }
+    .cert-card:hover img { transform: scale(1.1); }
+    .cert-card:hover .cert-overlay { opacity: 1; }
+    .cert-title { color: white; font-weight: 600; font-size: 1.1rem; }
+    .cert-sub { color: var(--accent); font-size: 0.85rem; margin-top: 5px; }
 
-    /* Contact */
+    /* Contact (Original Style) */
     .contact-icons {
       display: flex; justify-content: center; gap: 30px; flex-wrap: wrap; margin-top: 20px;
     }
@@ -327,79 +413,112 @@
       box-shadow: 0 0 20px var(--accent);
     }
 
+    /* Back to Top Button */
+    .back-to-top {
+      position: fixed;
+      bottom: 30px;
+      right: 30px;
+      width: 50px;
+      height: 50px;
+      background: var(--primary);
+      color: white;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.2rem;
+      cursor: pointer;
+      opacity: 0;
+      pointer-events: none;
+      transition: 0.3s;
+      z-index: 900;
+      box-shadow: 0 5px 15px rgba(99, 102, 241, 0.4);
+    }
+    .back-to-top.visible { opacity: 1; pointer-events: all; }
+    .back-to-top:hover { transform: translateY(-3px); }
+
     /* Footer */
     footer {
       text-align: center;
-      padding: 40px;
-      margin-top: 50px;
+      padding: 60px 20px;
+      margin-top: 80px;
       border-top: 1px solid var(--card-border);
       color: var(--text-muted);
       font-size: 0.9rem;
+      background: rgba(0,0,0,0.2);
     }
 
     /* Lightbox */
     .lightbox {
       display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%;
-      background: rgba(0,0,0,0.9); z-index: 2000;
+      background: rgba(0,0,0,0.95); z-index: 2000;
       justify-content: center; align-items: center; flex-direction: column;
-      backdrop-filter: blur(5px);
+      backdrop-filter: blur(10px);
     }
-    .lightbox img { max-width: 90%; max-height: 80vh; border: 2px solid white; border-radius: 8px; box-shadow: 0 0 30px rgba(0,0,0,0.5); }
-    .lightbox-controls { margin-top: 20px; display: flex; gap: 20px; }
-    .close-lb { position: absolute; top: 30px; right: 40px; color: white; font-size: 3rem; cursor: pointer; transition: 0.3s; }
-    .close-lb:hover { color: var(--accent); transform: rotate(90deg); }
+    .lightbox img { max-width: 90%; max-height: 80vh; border-radius: 8px; box-shadow: 0 0 50px rgba(0,0,0,0.8); }
+    .lightbox-controls { margin-top: 25px; }
+    .close-lb { position: absolute; top: 30px; right: 40px; color: white; font-size: 3rem; cursor: pointer; transition: 0.3s; opacity: 0.7; }
+    .close-lb:hover { color: var(--accent); transform: rotate(90deg); opacity: 1; }
 
     @media (max-width: 768px) {
-      header { flex-direction: column-reverse; text-align: center; padding-top: 100px; }
-      header h1 { font-size: 2.2rem; }
-      header img.profile { width: 220px; height: 220px; }
-      .tagline { justify-content: center; }
+      header { flex-direction: column-reverse; text-align: center; padding-top: 140px; }
+      header h1 { font-size: 2.5rem; }
+      header img.profile { width: 200px; height: 200px; }
+      .btn-group { justify-content: center; }
+      .glass-card .year { position: relative; top: auto; right: auto; display: inline-block; margin-bottom: 10px; }
     }
   </style>
 </head>
 <body>
 
-  <nav>
+  <div class="blob blob-1"></div>
+  <div class="blob blob-2"></div>
+
+  <div class="back-to-top" onclick="scrollToTop()">
+    <i class="fas fa-arrow-up"></i>
+  </div>
+
+  <nav id="navbar">
     <div class="logo">Portfolio</div>
     <div class="menu-toggle" onclick="toggleMenu()">
       <span></span><span></span><span></span>
     </div>
     <ul id="menu">
       <div class="close-btn" onclick="toggleMenu()">×</div>
-      <li><a href="#about" onclick="toggleMenu()">About</a></li>
-      <li><a href="#education" onclick="toggleMenu()">Education</a></li>
-      <li><a href="#skills" onclick="toggleMenu()">Skills</a></li>
-      <li><a href="#projects" onclick="toggleMenu()">Projects</a></li>
-      <li><a href="#certificates" onclick="toggleMenu()">Certificates</a></li>
-      <li><a href="#contact" onclick="toggleMenu()">Contact</a></li>
+      <li><a href="#about" class="nav-link" onclick="toggleMenu()">About</a></li>
+      <li><a href="#education" class="nav-link" onclick="toggleMenu()">Education</a></li>
+      <li><a href="#skills" class="nav-link" onclick="toggleMenu()">Skills</a></li>
+      <li><a href="#projects" class="nav-link" onclick="toggleMenu()">Projects</a></li>
+      <li><a href="#certificates" class="nav-link" onclick="toggleMenu()">Certificates</a></li>
+      <li><a href="#contact" class="nav-link" onclick="toggleMenu()">Contact</a></li>
     </ul>
   </nav>
 
   <header>
     <div class="intro hidden">
-      <p class="tagline">Hello, I am <span class="typing-text">Vijay Barokar</span></p>
-      <h1>Android App Developer & <br><span class="highlight">Tech Enthusiast</span></h1>
+      <span class="badge">ANDROID DEVELOPER</span>
+      <h1>Hello, I am <br><span class="highlight typing-text"></span></h1>
       <p class="desc">
-        Enthusiastic Android Developer with strong skills in Java and Android Studio. 
-        Familiar with UI/UX design principles and Android components. 
-        Eager to learn new technologies and committed to building quality applications.
+        I'm <strong style="color:white">Vijay Barokar</strong>, a tech enthusiast crafting high-performance Android applications with Java and modern UI principles.
       </p>
-      <div style="display:flex; gap:15px; flex-wrap:wrap; justify-content: inherit;">
-        <a class="btn" href="resume.pdf?v=1.0">Download My Resume</a>
+      <div class="btn-group">
+        <a class="btn" href="#projects">View Projects</a>
+        <a class="btn btn-outline" href="resume.pdf?v=1.0" download>Download CV <i class="fas fa-arrow-down" style="margin-left:8px; font-size:0.8rem;"></i></a>
       </div>
     </div>
     
     <div class="profile-container hidden">
-      <img src="ProfilePhoto.png" alt="Profile Img" class="profile">
+      <img src="ProfilePhoto.png" alt="Vijay Barokar" class="profile">
     </div>
   </header>
 
   <section id="about" class="hidden">
-    <h2>About Me</h2>
-    <div class="glass-card" style="text-align: center; max-width: 800px; margin: auto;">
-      <p style="font-size: 1.1rem; color: #e2e8f0;">
+    <div class="glass-card" style="text-align: center; max-width: 900px; margin: auto; padding: 50px;">
+      <h2 style="margin-bottom: 20px;">About Me</h2>
+      <p style="font-size: 1.2rem; color: #cbd5e1; max-width: 700px; margin: auto;">
         I am a passionate developer with a Diploma in Computer Engineering. 
-        Skilled in Android Development, Web Technologies, and always excited to solve challenging problems. 
+        Specializing in <span style="color:var(--primary)">Android Development</span> and Web Technologies, I thrive on turning complex problems into elegant, user-friendly solutions. 
+        Currently pursuing B.Tech to further deepen my architectural knowledge.
       </p>
     </div>
   </section>
@@ -408,80 +527,82 @@
     <h2>Education</h2>
     <div class="grid-container">
       <div class="glass-card hidden">
-        <h3>B.Tech</h3>
+        <span class="year">2025 – 2028</span>
+        <span class="subtitle">Bachelor of Technology</span>
+        <h3>Computer Science & Engineering</h3>
         <p>Matsyodari Shikshan Sanstha's College of Engineering & Technology, Jalna</p>
-        <div class="meta">2025 – 2028</div>
       </div>
       <div class="glass-card hidden">
-        <h3>Diploma in Computer Engineering</h3>
+        <span class="year">2022 – 2025</span>
+        <span class="subtitle">Diploma</span>
+        <h3>Computer Engineering</h3>
         <p>Government Polytechnic, Jalna</p>
-        <div class="meta">Completed: 2022 – 2025</div>
       </div>
       <div class="glass-card hidden">
-        <h3>Secondary School Certificate (SSC)</h3>
+        <span class="year">2021 - 2022</span>
+        <span class="subtitle">SSC</span>
+        <h3>Secondary School</h3>
         <p>Mahatma Phule Madhyamik Vidhyalay, Longaon</p>
-        <div class="meta">Completed: 2021 - 2022</div>
       </div>
     </div>
   </section>
 
-  <section id="skills">
-    <h2>Technical Skills</h2>
+  <section id="skills" class="skills-section">
+    <h2>Technical Arsenal</h2>
     
-    <h3 style="color:var(--text-muted); margin-bottom:20px; font-size:1.1rem; text-align:center;">Programming Languages</h3>
+    <h3>Languages</h3>
     <div class="skills-grid hidden">
-      <div class="skill-badge"><img src="c.png?v=1.0"><span>C</span></div>
-      <div class="skill-badge"><img src="cpp.png?v=1.0"><span>C++</span></div>
-      <div class="skill-badge"><img src="java.png?v=1.0"><span>Java</span></div>
-      <div class="skill-badge"><img src="javascript.png?v=1.0"><span>JavaScript</span></div>
-      <div class="skill-badge"><img src="python.png?v=1.0"><span>Python</span></div>
-      <div class="skill-badge"><img src="php.png?v=1.0"><span>PHP</span></div>
+      <div class="skill-pill"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/java/java-original.svg" alt="Java"><span>Java</span></div>
+      <div class="skill-pill"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/c/c-original.svg" alt="C"><span>C</span></div>
+      <div class="skill-pill"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/cplusplus/cplusplus-original.svg" alt="C++"><span>C++</span></div>
+      <div class="skill-pill"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/python/python-original.svg" alt="Python"><span>Python</span></div>
+      <div class="skill-pill"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/javascript/javascript-original.svg" alt="JS"><span>JavaScript</span></div>
+      <div class="skill-pill"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/php/php-original.svg" alt="PHP"><span>PHP</span></div>
     </div>
 
-    <h3 style="color:var(--text-muted); margin:40px 0 20px; font-size:1.1rem; text-align:center;">Mobile Development</h3>
+    <h3>Development</h3>
     <div class="skills-grid hidden">
-      <div class="skill-badge"><img src="android.png?v=1.0"><span>Android</span></div>
-      <div class="skill-badge"><img src="xml.png?v=1.0"><span>XML</span></div>
-      <div class="skill-badge"><img src="firebase.png?v=1.0"><span>Firebase</span></div>
-    </div>
-
-    <h3 style="color:var(--text-muted); margin:40px 0 20px; font-size:1.1rem; text-align:center;">Tools & Platforms</h3>
-    <div class="skills-grid hidden">
-      <div class="skill-badge"><img src="github.png?v=1.0"><span>GitHub</span></div>
-      <div class="skill-badge"><img src="postman.png?v=1.0"><span>Postman</span></div>
-      <div class="skill-badge"><img src="playconsole.png?v=1.0"><span>Play Console</span></div>
-      <div class="skill-badge"><img src="sql.png?v=1.0"><span>SQL</span></div>
+      <div class="skill-pill"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/android/android-original.svg" alt="Android"><span>Android SDK</span></div>
+      <div class="skill-pill"><img src="xml.png" alt="XML"><span>XML</span></div>
+      <div class="skill-pill"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/firebase/firebase-plain.svg" alt="Firebase"><span>Firebase</span></div>
+      <div class="skill-pill"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/mysql/mysql-original.svg" alt="SQL"><span>SQL</span></div>
+      <div class="skill-pill"><img src="Github.svg" alt="GitHub"><span>Git/GitHub</span></div>
+      <div class="skill-pill"><img src="https://www.vectorlogo.zone/logos/getpostman/getpostman-icon.svg" alt="Postman"><span>Postman</span></div>
     </div>
   </section>
 
   <section id="projects">
-    <h2>Projects</h2>
+    <h2>Featured Work</h2>
     <div class="grid-container">
       <div class="glass-card hidden">
-        <h3>Online Food Delivery Android App</h3>
-        <p>Capstone project with user login, ordering, category browsing, profile management, and order history features using PHP backend and Android frontend.</p>
-        <a class="btn" href="https://github.com/vijaybarokar/QuickBite" target="_blank" style="margin-top:15px; font-size:0.9rem; padding:8px 20px;">GitHub</a>
+        <span class="subtitle">Android App • Java • PHP</span>
+        <h3>QuickBite Food Delivery</h3>
+        <p style="margin-bottom: 20px;">
+          A full-stack Android application allowing users to browse menus, order food, and manage profiles. Features a custom PHP backend API for handling orders and user authentication.
+        </p>
+        <div style="display:flex; gap:10px;">
+          <a class="btn btn-outline" href="https://github.com/vijaybarokar/QuickBite" target="_blank" style="padding: 8px 16px; font-size: 0.9rem;">
+            <i class="fab fa-github" style="margin-right:5px;"></i> View Code
+          </a>
+        </div>
       </div>
-    </div>
-  </section>
-
-  <section id="certificates">
-    <h2>Certificates</h2>
-
+    </div> </section> <section id="certificates">
+    <h2>Certifications</h2>
+    
     <h3 style="color:var(--text-muted); margin:40px 0 20px; font-size:1.1rem; text-align:center;">Internship & Training</h3>
     <div class="cert-grid hidden">
       <div class="cert-card" onclick="openLightbox('certificate2.png?v=1.0')">
-        <img src="certificate2.png?v=1.0" class="bg">
-        <div class="cert-content">
-          <div class="cert-icon"><img src="android.png?v=1.0"></div>
+        <img src="certificate2.png?v=1.0" alt="Cert">
+        <div class="cert-overlay">
           <div class="cert-title">Full Stack Android Training</div>
+          <div class="cert-sub">Internship</div>
         </div>
       </div>
       <div class="cert-card" onclick="openLightbox('certificate1.jfif?v=1.0')">
-        <img src="certificate1.jfif?v=1.0" class="bg">
-        <div class="cert-content">
-          <div class="cert-icon"><img src="android.png?v=1.0"></div>
+        <img src="certificate1.jfif?v=1.0" alt="Cert">
+        <div class="cert-overlay">
           <div class="cert-title">Industrial Training</div>
+          <div class="cert-sub">Internship</div>
         </div>
       </div>
     </div>
@@ -489,91 +610,91 @@
     <h3 style="color:var(--text-muted); margin:40px 0 20px; font-size:1.1rem; text-align:center;">Programming Languages</h3>
     <div class="cert-grid hidden">
       <div class="cert-card" onclick="openLightbox('Java certificate.jpg?v=1.0')">
-        <img src="Java certificate.jpg?v=1.0" class="bg">
-        <div class="cert-content">
-          <div class="cert-icon"><img src="java.png?v=1.0"></div>
-          <div class="cert-title">Java</div>
+        <img src="Java certificate.jpg?v=1.0" alt="Cert">
+        <div class="cert-overlay">
+          <div class="cert-title">Java Programming</div>
+          <div class="cert-sub">Language</div>
         </div>
       </div>
       <div class="cert-card" onclick="openLightbox('CPP certificate.jpg?v=1.0')">
-        <img src="CPP certificate.jpg?v=1.0" class="bg">
-        <div class="cert-content">
-          <div class="cert-icon"><img src="cpp.png?v=1.0"></div>
-          <div class="cert-title">C++</div>
+        <img src="CPP certificate.jpg?v=1.0" alt="Cert">
+        <div class="cert-overlay">
+          <div class="cert-title">C++ Programming</div>
+          <div class="cert-sub">Language</div>
         </div>
       </div>
       <div class="cert-card" onclick="openLightbox('Python.jpg?v=1.0')">
-        <img src="Python.jpg?v=1.0" class="bg">
-        <div class="cert-content">
-          <div class="cert-icon"><img src="python.png?v=1.0"></div>
-          <div class="cert-title">Python</div>
+        <img src="Python.jpg?v=1.0" alt="Cert">
+        <div class="cert-overlay">
+          <div class="cert-title">Python Programming</div>
+          <div class="cert-sub">Language</div>
         </div>
       </div>
       <div class="cert-card" onclick="openLightbox('PHP certificate.jpg?v=1.0')">
-        <img src="PHP certificate.jpg?v=1.0" class="bg">
-        <div class="cert-content">
-          <div class="cert-icon"><img src="php.png?v=1.0"></div>
-          <div class="cert-title">PHP</div>
+        <img src="PHP certificate.jpg?v=1.0" alt="Cert">
+        <div class="cert-overlay">
+          <div class="cert-title">PHP Programming</div>
+          <div class="cert-sub">Language</div>
         </div>
       </div>
       <div class="cert-card" onclick="openLightbox('Javascript certificate.jpg?v=1.0')">
-        <img src="Javascript certificate.jpg?v=1.0" class="bg">
-        <div class="cert-content">
-          <div class="cert-icon"><img src="javascript.png?v=1.0"></div>
+        <img src="Javascript certificate.jpg?v=1.0" alt="Cert">
+        <div class="cert-overlay">
           <div class="cert-title">JavaScript</div>
+          <div class="cert-sub">Language</div>
         </div>
       </div>
       <div class="cert-card" onclick="openLightbox('DSU certificate.jpg?v=1.0')">
-        <img src="DSU certificate.jpg?v=1.0" class="bg">
-        <div class="cert-content">
-          <div class="cert-icon"><img src="ds.png?v=1.0"></div>
+        <img src="DSU certificate.jpg?v=1.0" alt="Cert">
+        <div class="cert-overlay">
           <div class="cert-title">Data Structures</div>
+          <div class="cert-sub">Fundamentals</div>
         </div>
       </div>
       <div class="cert-card" onclick="openLightbox('Microprocessor certificate.jpg?v=1.0')">
-        <img src="Microprocessor certificate.jpg?v=1.0" class="bg">
-        <div class="cert-content">
-          <div class="cert-icon"><img src="microprocessor.png?v=1.0"></div>
+        <img src="Microprocessor certificate.jpg?v=1.0" alt="Cert">
+        <div class="cert-overlay">
           <div class="cert-title">Microprocessor</div>
+          <div class="cert-sub">Hardware</div>
         </div>
       </div>
       <div class="cert-card" onclick="openLightbox('Adv Java certificate.jpg?v=1.0')">
-        <img src="Adv Java certificate.jpg?v=1.0" class="bg">
-        <div class="cert-content">
-          <div class="cert-icon"><img src="java.png?v=1.0"></div>
+        <img src="Adv Java certificate.jpg?v=1.0" alt="Cert">
+        <div class="cert-overlay">
           <div class="cert-title">Advanced Java</div>
+          <div class="cert-sub">Language</div>
         </div>
       </div>
       <div class="cert-card" onclick="openLightbox('Android certificate.jpg?v=1.0')">
-        <img src="Android certificate.jpg?v=1.0" class="bg">
-        <div class="cert-content">
-          <div class="cert-icon"><img src="android.png?v=1.0"></div>
-          <div class="cert-title">Android</div>
+        <img src="Android certificate.jpg?v=1.0" alt="Cert">
+        <div class="cert-overlay">
+          <div class="cert-title">Android Development</div>
+          <div class="cert-sub">Mobile</div>
         </div>
       </div>
     </div>
 
     <h3 style="color:var(--text-muted); margin:40px 0 20px; font-size:1.1rem; text-align:center;">Workshops</h3>
     <div class="cert-grid hidden">
-       <div class="cert-card" onclick="openLightbox('Cybersecurity.jpg?v=1.0')">
-        <img src="Cybersecurity.jpg?v=1.0" class="bg">
-        <div class="cert-content">
-          <div class="cert-icon"><img src="cybersecurity.png?v=1.0"></div>
+      <div class="cert-card" onclick="openLightbox('Cybersecurity.jpg?v=1.0')">
+        <img src="Cybersecurity.jpg?v=1.0" alt="Cert">
+        <div class="cert-overlay">
           <div class="cert-title">Cybersecurity</div>
+          <div class="cert-sub">Workshop</div>
         </div>
       </div>
       <div class="cert-card" onclick="openLightbox('Python workshop.jpg?v=1.0')">
-        <img src="Python workshop.jpg?v=1.0" class="bg">
-        <div class="cert-content">
-          <div class="cert-icon"><img src="data science.png?v=1.0"></div>
+        <img src="Python workshop.jpg?v=1.0" alt="Cert">
+        <div class="cert-overlay">
           <div class="cert-title">Data Science (Python)</div>
+          <div class="cert-sub">Workshop</div>
         </div>
       </div>
       <div class="cert-card" onclick="openLightbox('Hardware maintenance.jpg?v=1.0')">
-        <img src="Hardware maintenance.jpg?v=1.0" class="bg">
-        <div class="cert-content">
-          <div class="cert-icon"><img src="hardware.png?v=1.0"></div>
+        <img src="Hardware maintenance.jpg?v=1.0" alt="Cert">
+        <div class="cert-overlay">
           <div class="cert-title">Hardware Maintenance</div>
+          <div class="cert-sub">Workshop</div>
         </div>
       </div>
     </div>
@@ -582,72 +703,151 @@
   <section id="contact">
     <h2>Get In Touch</h2>
     <div class="glass-card hidden" style="text-align: center; max-width: 600px; margin: auto;">
-      <p>I am currently available for internships and freelance projects. Feel free to reach out!</p>
+      <p style="font-size: 1.1rem; color: #cbd5e1;">I am currently available for internships and freelance projects. Feel free to reach out!</p>
       <div class="contact-icons">
-        <a href="mailto:vijaybarokar1@gmail.com" title="Email"><img src="email.png?v=1.0"></a>
-        <a href="https://wa.me/919834826467" target="_blank" title="WhatsApp"><img src="whatsapp.png?v=1.0"></a>
-        <a href="https://github.com/vijaybarokar" target="_blank" title="GitHub"><img src="github.png?v=1.0"></a>
-        <a href="https://www.linkedin.com/in/vijay-barokar-b21124323" target="_blank" title="LinkedIn"><img src="linkedin.png?v=1.0"></a>
-        <a href="https://maps.google.com/?q=Jalna,Maharashtra" target="_blank" title="Location"><img src="location.png?v=1.0"></a>
+        <a href="mailto:vijaybarokar1@gmail.com" title="Email"><img src="email.png?v=1.0" alt="Email"></a>
+        <a href="https://github.com/vijaybarokar" target="_blank" title="GitHub"><img src="Github.svg" alt="GitHub"></a>
+        <a href="https://www.linkedin.com/in/vijay-barokar-b21124323" target="_blank" title="LinkedIn"><img src="linkedin.png?v=1.0" alt="LinkedIn"></a>
       </div>
     </div>
   </section>
 
   <footer>
-    <p>© 2025 Vijay Shankar Barokar. All rights reserved.</p>
+    <p style="opacity: 0.7;">Designed & Built by Vijay Shankar Barokar</p>
+    <p style="font-size: 0.8rem; margin-top: 5px; color: var(--accent);">© 2025 All rights reserved.</p>
   </footer>
 
   <div id="lightbox" class="lightbox" onclick="closeLightbox(event)">
     <span class="close-lb" onclick="closeLightbox(event)">×</span>
     <img id="lightbox-img" src="" alt="Certificate">
     <div class="lightbox-controls">
-      <a id="downloadLink" class="btn" href="#" download>Download Image</a>
+      <a id="downloadLink" class="btn" href="#" download>Download</a>
     </div>
   </div>
 
   <script>
-    // Mobile Menu
+    // --- Sticky Navbar Logic ---
+    window.addEventListener("scroll", function() {
+      const nav = document.getElementById("navbar");
+      const backToTop = document.querySelector(".back-to-top");
+      
+      // Nav style
+      if (window.scrollY > 50) {
+        nav.classList.add("scrolled");
+      } else {
+        nav.classList.remove("scrolled");
+      }
+
+      // Back to top button visibility
+      if (window.scrollY > 300) {
+        backToTop.classList.add("visible");
+      } else {
+        backToTop.classList.remove("visible");
+      }
+
+      // --- Scroll Spy Logic (Active Nav Link) ---
+      const sections = document.querySelectorAll("section");
+      const navLinks = document.querySelectorAll(".nav-link");
+
+      let current = "";
+      sections.forEach((section) => {
+        const sectionTop = section.offsetTop;
+        if (pageYOffset >= sectionTop - 150) {
+          current = section.getAttribute("id");
+        }
+      });
+
+      navLinks.forEach((link) => {
+        link.classList.remove("active");
+        if (link.getAttribute("href").includes(current)) {
+          link.classList.add("active");
+        }
+      });
+    });
+
+    // --- Scroll to Top ---
+    function scrollToTop() {
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+
+    // --- Mobile Menu ---
     function toggleMenu() {
       document.getElementById('menu').classList.toggle('active');
     }
 
-    // Scroll Animation (Intersection Observer)
+    // --- Mouse Glow Effect on Cards ---
+    document.querySelectorAll('.glass-card').forEach(card => {
+      card.onmousemove = e => {
+        const rect = card.getBoundingClientRect();
+        const x = e.clientX - rect.left;
+        const y = e.clientY - rect.top;
+        card.style.setProperty('--mouse-x', `${x}px`);
+        card.style.setProperty('--mouse-y', `${y}px`);
+      }
+    });
+
+    // --- Scroll Animations ---
     const observer = new IntersectionObserver((entries) => {
       entries.forEach((entry) => {
         if (entry.isIntersecting) {
           entry.target.classList.add('show');
         }
       });
-    });
+    }, { threshold: 0.1 });
     
-    // Select all hidden elements to animate
-    const hiddenElements = document.querySelectorAll('.hidden');
-    hiddenElements.forEach((el) => observer.observe(el));
+    document.querySelectorAll('.hidden').forEach((el) => observer.observe(el));
 
-    // Lightbox Logic
+    // --- Lightbox Logic ---
     function openLightbox(imgSrc) {
       document.getElementById('lightbox').style.display = 'flex';
       document.getElementById('lightbox-img').src = imgSrc;
       document.getElementById('downloadLink').href = imgSrc;
-      // LOCK SCROLL: Prevents background from moving
       document.body.style.overflow = 'hidden';
     }
 
     function closeLightbox(event) {
-      // Logic to check if user clicked outside the image or on the close button
       if (!event || event.target.id === 'lightbox' || event.target.classList.contains('close-lb')) {
         document.getElementById('lightbox').style.display = 'none';
-        // UNLOCK SCROLL: Allows background to move again
         document.body.style.overflow = '';
       }
     }
 
-    // Escape Key Listener
     document.addEventListener('keydown', function(event) {
-      if (event.key === "Escape") {
-        closeLightbox(); // Call without event to force close
-      }
+      if (event.key === "Escape") closeLightbox();
     });
+
+    // --- Typing Effect ---
+    const typingText = document.querySelector('.typing-text');
+    const words = ["Vijay Barokar", "an Android Developer", "a UI/UX Designer", "a Tech Enthusiast"];
+    let wordIndex = 0;
+    let charIndex = 0;
+    let isDeleting = false;
+
+    function type() {
+      const currentWord = words[wordIndex];
+      
+      if (isDeleting) {
+        typingText.textContent = currentWord.substring(0, charIndex - 1);
+        charIndex--;
+      } else {
+        typingText.textContent = currentWord.substring(0, charIndex + 1);
+        charIndex++;
+      }
+
+      if (!isDeleting && charIndex === currentWord.length) {
+        isDeleting = true;
+        setTimeout(type, 2000); // Pause at end
+      } else if (isDeleting && charIndex === 0) {
+        isDeleting = false;
+        wordIndex = (wordIndex + 1) % words.length;
+        setTimeout(type, 500); // Pause before typing new
+      } else {
+        setTimeout(type, isDeleting ? 100 : 200);
+      }
+    }
+    
+    // Start typing on load
+    document.addEventListener('DOMContentLoaded', type);
   </script>
 </body>
 </html>
